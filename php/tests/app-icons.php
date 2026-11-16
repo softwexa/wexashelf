@@ -1,0 +1,9 @@
+<?php
+declare(strict_types=1);
+require __DIR__.'/../app/bootstrap.php';
+use WexaShelf\{Validation,PublicSite,ApiException};
+$seed=json_decode(file_get_contents(__DIR__.'/../resources/seed.json'),true);$source=null;foreach($seed['records']as$r)if($r['kind']==='app'){$source=$r['data'];break;}if(!$source)throw new RuntimeException('Missing app fixture');$id=str_repeat('a',64);
+foreach(['/icons/custom-publisher.png','/icons/antennapod.svg','/media/'.$id.'.webp']as$icon)Validation::data('app',array_replace($source,['icon'=>$icon]));
+foreach(['https://example.org/logo.png','//example.org/logo.png','/admin','/icons/../../config.php','/media/'.$id.'.svg','/media/'.$id.'.webp?draft=1','/media/not-an-identity.png']as$icon){try{Validation::data('app',array_replace($source,['icon'=>$icon]));}catch(ApiException){continue;}throw new RuntimeException('Invalid icon accepted: '.$icon);}
+$app=array_replace($source,['icon'=>'/media/'.$id.'.webp']);$catalog=['apps'=>[$app],'articles'=>[],'translations'=>[]];if(!PublicSite::publicMedia($catalog,$id,'webp')||PublicSite::publicMedia($catalog,$id,'png'))throw new RuntimeException('Icon publication or exact format failed');$catalog['apps'][0]['icon']='/icons/custom-publisher.png';if(PublicSite::publicMedia($catalog,$id,'webp'))throw new RuntimeException('Unused uploaded icon remains public');$catalog['translations'][]=['kind'=>'app','id'=>$app['id'],'locale'=>'en','status'=>'published','data'=>$app];if(!PublicSite::publicMedia($catalog,$id,'webp'))throw new RuntimeException('Frozen published icon unavailable');$catalog['translations'][0]['status']='draft';if(PublicSite::publicMedia($catalog,$id,'webp'))throw new RuntimeException('Draft icon leak');
+echo "PASS app icon validation, exact format, withdrawn icon and frozen translation publication.\n";

@@ -1,0 +1,180 @@
+{
+  "enrichments": {
+    "notion": {
+      "publisher": "Notion Labs, Inc.",
+      "tags": ["not alma", "doküman", "veritabanı", "işbirliği"],
+      "aliases": ["Notion", "Notion workspace"],
+      "pricingModel": "freemium",
+      "plans": [
+        {
+          "id": "notion-free",
+          "name": "Free",
+          "currency": "USD",
+          "monthlyPrice": 0,
+          "annualPrice": 0,
+          "perSeat": true,
+          "free": true,
+          "platforms": ["android", "ios", "windows"],
+          "features": ["offline"],
+          "limits": [{"label": "Dosya yükleme", "value": "5 MB'a kadar"}],
+          "sourceUrl": "https://www.notion.com/pricing",
+          "checkedAt": "2026-11-15",
+          "note": "Resmi fiyat sayfasında Free plan 0 USD/üye/ay olarak listeleniyor; çevrimdışı kullanım masaüstü ve mobil uygulamalarda ayrıca belirtiliyor."
+        }
+      ]
+    },
+    "obsidian": {
+      "publisher": "Obsidian",
+      "tags": ["yerel dosya", "bağlantılı not", "markdown", "çevrimdışı"],
+      "aliases": ["Obsidian.md", "Obsidian Notes"],
+      "pricingModel": "freemium",
+      "facts": [
+        {"key":"offline","platform":"windows","state":"supported","detail":"Uygulama yerel çalışır ve resmi ekip dokümanı çevrimiçi/çevrimdışı çalışmayı açıkça belirtir.","sourceUrl":"https://obsidian.md/help/teams/deploy","checkedAt":"2026-11-15","evidence":"publisher"},
+        {"key":"offline","platform":"android","state":"supported","detail":"Notların cihazda yerel tutulduğu ve çevrimdışı erişilebildiği; Android'in önerilen Sync sistemleri arasında olduğu belirtiliyor.","sourceUrl":"https://obsidian.md/help/Getting%20started/Sync%20your%20notes%20across%20devices","checkedAt":"2026-11-15","evidence":"publisher"},
+        {"key":"offline","platform":"ios","state":"supported","detail":"Notların yerel tutulduğu ve çevrimdışı erişilebildiği; iOS'un önerilen Sync sistemleri arasında olduğu belirtiliyor.","sourceUrl":"https://obsidian.md/help/Getting%20started/Sync%20your%20notes%20across%20devices","checkedAt":"2026-11-15","evidence":"publisher"},
+        {"key":"sync","platform":"windows","state":"supported","detail":"Obsidian Sync için Windows resmi olarak önerilen sistemler arasında listeleniyor; bu, Sync hizmetinin kullanılabilirliğini gösterir.","sourceUrl":"https://obsidian.md/help/Getting%20started/Sync%20your%20notes%20across%20devices","checkedAt":"2026-11-15","evidence":"publisher"},
+        {"key":"sync","platform":"android","state":"supported","detail":"Obsidian Sync için Android resmi olarak önerilen sistemler arasında listeleniyor.","sourceUrl":"https://obsidian.md/help/Getting%20started/Sync%20your%20notes%20across%20devices","checkedAt":"2026-11-15","evidence":"publisher"},
+        {"key":"sync","platform":"ios","state":"supported","detail":"Obsidian Sync için iOS resmi olarak önerilen sistemler arasında listeleniyor.","sourceUrl":"https://obsidian.md/help/Getting%20started/Sync%20your%20notes%20across%20devices","checkedAt":"2026-11-15","evidence":"publisher"}
+      ],
+      "plans": [
+        {
+          "id":"obsidian-free","name":"Free","currency":"USD","monthlyPrice":0,"annualPrice":0,"perSeat":false,"free":true,
+          "platforms":["android","ios","windows"],"features":["offline","account-free","ad-free"],"limits":[],
+          "sourceUrl":"https://obsidian.md/pricing.html","checkedAt":"2026-11-15",
+          "note":"Resmi fiyat sayfası uygulamanın limitsiz ücretsiz ve kayıt gerektirmeden kullanılabildiğini; Sync'in isteğe bağlı eklenti olduğunu söylüyor."
+        }
+      ]
+    },
+    "vlc": {
+      "publisher": "VideoLAN",
+      "tags": ["medya oynatıcı", "yerel dosya", "açık kaynak", "reklamsız"],
+      "aliases": ["VLC media player", "VideoLAN VLC"],
+      "pricingModel": "free",
+      "facts": [
+        {"key":"offline","platform":"windows","state":"supported","detail":"VideoLAN dosya oynatmayı ve Windows sürümünü listeliyor; bu yerel dosya oynatımı için çevrimdışı kullanım sinyalidir, ağ akışlarını kapsamaz.","sourceUrl":"https://images.videolan.org/vlc/index.en_GB.html","checkedAt":"2026-11-15","evidence":"publisher"},
+        {"key":"offline","platform":"android","state":"supported","detail":"Resmi Android sayfası cihazdaki video ve ses dosyalarını oynatmayı açıkça listeliyor.","sourceUrl":"https://images.videolan.org/vlc/download-android.html","checkedAt":"2026-11-15","evidence":"publisher"},
+        {"key":"offline","platform":"ios","state":"supported","detail":"VideoLAN iOS sürümünü ve dosya oynatmayı aynı resmi ürün sayfasında listeliyor; ağ akışından ayrı yerel dosya senaryosudur.","sourceUrl":"https://images.videolan.org/vlc/index.en_GB.html","checkedAt":"2026-11-15","evidence":"publisher"},
+        {"key":"ad-free","platform":"windows","state":"supported","detail":"VideoLAN resmi sayfası VLC'yi reklamsız olarak tanımlıyor.","sourceUrl":"https://images.videolan.org/vlc/index.en_GB.html","checkedAt":"2026-11-15","evidence":"publisher"},
+        {"key":"ad-free","platform":"android","state":"supported","detail":"VLC'nin reklamsız olduğu VideoLAN'ın tüm platformları kapsayan resmi ürün açıklamasında belirtiliyor.","sourceUrl":"https://images.videolan.org/vlc/index.en_GB.html","checkedAt":"2026-11-15","evidence":"publisher"},
+        {"key":"ad-free","platform":"ios","state":"supported","detail":"VLC'nin reklamsız olduğu VideoLAN'ın tüm platformları kapsayan resmi ürün açıklamasında belirtiliyor.","sourceUrl":"https://images.videolan.org/vlc/index.en_GB.html","checkedAt":"2026-11-15","evidence":"publisher"}
+      ]
+    },
+    "antennapod": {
+      "publisher": "AntennaPod contributors",
+      "tags": ["podcast", "açık kaynak", "Android", "reklamsız"],
+      "aliases": ["AntennaPod podcast player"],
+      "pricingModel": "free",
+      "facts": [
+        {"key":"offline","platform":"android","state":"supported","detail":"Resmi ana sayfa bölümleri indirip her yerde dinlemeyi ve otomatik indirmeyi açıklıyor.","sourceUrl":"https://antennapod.org/","checkedAt":"2026-11-15","evidence":"publisher"},
+        {"key":"ad-free","platform":"android","state":"supported","detail":"Resmi reklam açıklaması uygulamanın reklam eklemediğini, bölüm içi reklamların yayıncıdan gelebileceğini ayırıyor.","sourceUrl":"https://antennapod.org/documentation/general/ads","checkedAt":"2026-11-15","evidence":"publisher"},
+        {"key":"account-free","platform":"android","state":"limited","detail":"Uygulama verilerinin cihazda tutulduğu ve reklam/tracking kütüphanesi içermediği belirtiliyor; isteğe bağlı senkronizasyon hizmetleri hesap kimlik bilgisi isteyebilir, bu nedenle mutlak hesapsızlık iddiası yapılmıyor.","sourceUrl":"https://antennapod.org/privacy/","checkedAt":"2026-11-15","evidence":"publisher"},
+        {"key":"export","platform":"android","state":"supported","detail":"Resmi yedekleme dokümanı veritabanı ve OPML dışa aktarmayı, kayıpları ve yeniden içe aktarma adımlarını açıklıyor.","sourceUrl":"https://antennapod.org/documentation/general/backup","checkedAt":"2026-11-15","evidence":"publisher"},
+        {"key":"sync","platform":"android","state":"limited","detail":"Senkronizasyon mümkün; ancak resmi kılavuz gpodder.net veya Nextcloud gibi ayrı bir sunucu/hesap gerektirdiğini ve bazı verilerin kaybolabileceğini belirtiyor.","sourceUrl":"https://antennapod.org/documentation/general/synchronization","checkedAt":"2026-11-15","evidence":"publisher"}
+      ],
+      "plans": [
+        {
+          "id":"antennapod-free","name":"Free","currency":"USD","monthlyPrice":0,"annualPrice":0,"perSeat":false,"free":true,
+          "platforms":["android"],"features":["offline","ad-free","export"],"limits":[],
+          "sourceUrl":"https://antennapod.org/about/","checkedAt":"2026-11-15",
+          "note":"Resmi About sayfası uygulamayı tamamen ücretsiz ve reklamsız olarak tanımlıyor; ücretli plan veya abonelik iddiası eklenmedi."
+        }
+      ]
+    }
+  },
+  "articles": [
+    {
+      "id":"not-araci-secimi-kriterleri",
+      "title":"Not uygulaması seçerken önce çalışma biçimini tanımla",
+      "summary":"Not aracı seçimini marka ezberinden çıkarıp veri biçimi, çevrimdışı ihtiyaç ve işbirliği bağlamına bağlayan kaynak-araştırması rehberi.",
+      "kind":"guide","author":"Uygulama Rehberi editoryal notları",
+      "sections":[
+        {"heading":"Not mu, ortak çalışma alanı mı?","paragraphs":["İlk soru hangi uygulamanın daha popüler olduğu değil, notun nasıl yaşayacağıdır. Tek başına uzun süre saklanacak, başka araçlara taşınması muhtemel metinler için dosya sahipliği ve dışa aktarma yolu baştan sorulmalıdır. Obsidian'ın resmi belgeleri notları yerel Markdown dosyalarında tuttuğunu, çevrimdışı çalıştığını ve başka uygulamaya geçişi kolaylaştıran içe aktarma yolları bulunduğunu anlatıyor. Bu, her kullanıcı için otomatik olarak en iyi seçenek demek değildir; yalnızca veri biçiminin kararın merkezine alınabileceğini gösterir." ]},
+        {"heading":"Paylaşım ve sınırlar","paragraphs":["Notion'ın resmi fiyat sayfası Free planı bireysel düzenleme, veritabanı ve sayfa paylaşımı bağlamında sunuyor; aynı sayfada çevrimdışı kullanımın masaüstü ve mobil uygulamalarda yer aldığını da belirtiyor. Karşılaştırırken 'offline var' demek yetmez: hangi sayfaların indirilebildiği, dosya yükleme sınırı ve ekip üyeliğinin planı nasıl değiştirdiği yazılmalıdır. Bu başlangıç verisi mağaza puanı veya editör testi değildir; geliştirici beyanlarını anlaşılır karar sorularına çeviren bir çerçevedir." ]},
+        {"heading":"Kısa karar yolu","paragraphs":["Üç soruyla başlayın: notlarım dosya olarak bende kalmalı mı, ekip arkadaşlarım aynı sayfada mı çalışacak, internet yokken hangi içeriğe ihtiyacım var? Yanıtlar netleşmeden özellik listesi uzatılmamalı. İhtiyaç değişirse aynı tabloyu yeniden okuyun; tek bir kazanan ilan etmek yerine hangi ödünün kabul edildiğini görünür kılın. Böylece seçim, sonradan değişen bir etiket yerine gözden geçirilebilir bir ihtiyaç kaydına dayanır."]}
+      ],
+      "appIds":["notion","obsidian"],
+      "sources":[{"title":"Notion resmi fiyat planları","url":"https://www.notion.com/pricing"},{"title":"Obsidian resmi fiyatlandırma","url":"https://obsidian.md/pricing.html"},{"title":"Obsidian notları cihazlar arasında eşitleme rehberi","url":"https://obsidian.md/help/Getting%20started/Sync%20your%20notes%20across%20devices"}],
+      "method":"source-research","publishedAt":"2026-11-15","updatedAt":"2026-11-15"
+    },
+    {
+      "id":"pdf-gorevleri-ayristirma",
+      "title":"PDF ile ne yapacağınızı ayırmadan uygulama seçmeyin",
+      "summary":"Okuma, yorumlama, dönüştürme ve imzalama ihtiyaçlarını birbirinden ayıran kaynak-araştırması rehberi.",
+      "kind":"guide","author":"Uygulama Rehberi editoryal notları",
+      "sections":[
+        {"heading":"Okumak başka, belge üretmek başka","paragraphs":["Bir PDF uygulamasını seçerken 'PDF açıyor' ifadesi çok geniştir. Sadece okuma ve paylaşma ihtiyacı olan kişiyle taranmış belgeyi OCR ile düzenlemek, form doldurmak veya imza toplamak isteyen kişinin aynı planı araması gerekmez. Adobe'nin resmi Acrobat sayfaları Reader'ı ücretsiz görüntüleme, yazdırma ve paylaşma aracı olarak; Standard ve Pro planlarını ise düzenleme, dönüştürme, dışa aktarma ve ileri belge iş akışlarıyla ayrı ayrı listeliyor. Bu ayrım, ücret bilgisinden önce görev kapsamını netleştirir." ]},
+        {"heading":"Karşılaştırma satırları","paragraphs":["Acrobat ve Xodo için başlangıç tablosunda her satır tek bir soruya cevap vermeli: yerel dosya açma, açıklama ekleme, dışa aktarma, taranmış metin, imza ve platform kapsamı. Resmi sayfa bir özelliği açıkça söylemiyorsa 'bilinmiyor' bırakmak, tahmini bir tik koymaktan daha faydalıdır. Mağaza açıklamaları sürüm ve cihaz koşullarını eksik bırakabilir; bu yüzden kaynak tarihi ve bağlantısı birlikte saklanmalıdır." ]},
+        {"heading":"Kullanıcıya kalan karar","paragraphs":["Okuma ağırlıklı iş akışında ücretsiz bir görüntüleyici yeterli olabilir. Düzenleme veya imza düzenli yapılıyorsa plan özellikleri ve iptal koşulları ayrıca kontrol edilmelidir. Bu metin fiziksel cihaz testi değildir; resmi ürün açıklamalarını karar verilebilir görev başlıklarına dönüştüren bir ön rehberdir. Yayından önce ürün sayfası ve mağaza kapsamı yeniden kontrol edilmelidir. Özellikle ülke, sürüm ve belge türü değiştiğinde aynı sonucun geçerli olduğu varsayılmamalıdır."]}
+      ],
+      "appIds":["acrobat","xodo"],
+      "sources":[{"title":"Adobe Acrobat resmi plan karşılaştırması","url":"https://www.adobe.com/acrobat/pricing/compare-versions.html"},{"title":"Adobe Acrobat resmi planlar","url":"https://www.adobe.com/acrobat/plans"},{"title":"Xodo resmi sitesi","url":"https://xodo.com"}],
+      "method":"source-research","publishedAt":"2026-11-15","updatedAt":"2026-11-15"
+    },
+    {
+      "id":"manuel-gecis-yedekli",
+      "title":"Uygulama değiştirirken önce yedek, sonra küçük bir deneme",
+      "summary":"Not ve podcast verisini yeni araca taşırken geri dönüş planını koruyan manuel geçiş yaklaşımı.",
+      "kind":"guide","author":"Uygulama Rehberi editoryal notları",
+      "sections":[
+        {"heading":"Geçiş bir düğme değil süreçtir","paragraphs":["Bir uygulamanın içe aktarma menüsü bulunması, eski verinin tüm anlamıyla taşınacağı anlamına gelmez. Önce mevcut veriyi özgün biçiminde dışa aktarın; sonra kopya üzerinde küçük ve temsilî bir örnek deneyin. Obsidian'ın resmi içe aktarma rehberi Markdown gibi açık dosya biçimlerinin taşınabilirliğini vurguluyor ve farklı uygulamalar için ayrı içe aktarma yolları gösteriyor. AntennaPod'un resmi yedekleme rehberi ise veritabanı aktarımıyla OPML aktarımının aynı şeyi taşımadığını, aboneliklerin korunurken bölüm durumu veya ayarların kaybolabileceğini açıkça ayırıyor." ]},
+        {"heading":"Kontrol listesi","paragraphs":["Eski uygulamayı silmeden önce üç kopya düşünün: özgün dışa aktarma, tarihli çalışma kopyası ve yeni uygulamadaki deneme içe aktarımı. Dosya adları, bağlantılar, etiketler, ekler ve tamamlanmışlık durumunu ayrı ayrı örnekleyin. Senkronizasyonu yedek sanmayın; Obsidian resmi yedekleme belgesi de eşitlemenin tek başına yedek olmadığını belirtiyor. Geçiş sırasında bir kayıp görülürse önceki kopyaya dönmek, aceleyle ikinci kez içe aktarmaktan daha güvenlidir." ]},
+        {"heading":"Ne zaman durmalı?","paragraphs":["Yeni uygulama eski biçimi kabul etmiyorsa bunu başarısızlık olarak değil, kapsam sınırı olarak kaydedin. Kullanıcıya 'tek tıkta geçer' vaadi yerine hangi alanların doğrulandığını ve hangilerinin manuel kurulacağını söyleyin. Bu yazı uygulamalı geçiş raporu değil; resmi belgelerden türetilmiş, gönüllü veri yüklemesi gerektirmeyen bir hazırlık yöntemidir. Geri dönüş yolu hazır değilse taşıma işlemini durdurmak, ilerleme görüntüsünden daha güvenlidir."]}
+      ],
+      "appIds":["notion","obsidian","antennapod"],
+      "sources":[{"title":"Obsidian resmi içe aktarma rehberi","url":"https://obsidian.md/help/import"},{"title":"Obsidian resmi yedekleme rehberi","url":"https://obsidian.md/help/backup"},{"title":"AntennaPod resmi yedekleme rehberi","url":"https://antennapod.org/documentation/general/backup"}],
+      "method":"source-research","publishedAt":"2026-11-15","updatedAt":"2026-11-15"
+    },
+    {
+      "id":"abonelik-maliyeti-hesaplama",
+      "title":"Abonelik maliyetini aylık etiketten değil gerçek kullanımından hesapla",
+      "summary":"Ücretsiz plan, yıllık fatura, kullanıcı başı ücret ve platform mağazası farklarını aynı tabloda okumak için kaynak-araştırması yöntemi.",
+      "kind":"guide","author":"Uygulama Rehberi editoryal notları",
+      "sections":[
+        {"heading":"Önce fiyat birimini sabitle","paragraphs":["Bir planı karşılaştırırken aylık görünen rakam ile yıllık peşin toplamı karıştırmayın. Notion resmi sayfası fiyatları USD ve üye/ay olarak gösteriyor; Todoist resmi fiyat sayfası aylık ve yıllık faturalama seçeneklerini ayrı veriyor; TickTick de ücretsiz ve Premium seçeneklerini ayrı kapasite sınırlarıyla listeliyor. Bu nedenle tabloya plan adı, para birimi, faturalama dönemi, kullanıcı/koltuk sayısı ve vergi notu ayrı sütunlar olarak girilmelidir. Kaynakta olmayan yerel fiyatı çevirmeyin." ]},
+        {"heading":"Ücretsiz planın sınırını yaz","paragraphs":["0 fiyat tek başına 'sınırsız' demek değildir. Dosya yükleme, proje sayısı, geçmiş, filtre veya senkronizasyon sınırı kararın gerçek maliyetini belirleyebilir. Notion'ın resmi karşılaştırması Free plan için 5 MB dosya yükleme sınırı ve seçilebilir çevrimdışı sayfa davranışını gösteriyor. TickTick'in resmi sayfası Free plan için liste, görev ve senkronizasyon kapsamını birlikte listeliyor. Bunlar farklı ürünleri aynı kefeye koymak için değil, kullanıcının kendi aylık kullanımını ölçmesi için başlangıç verileridir." ]},
+        {"heading":"Mağaza ve web fiyatını yeniden kontrol et","paragraphs":["Mobil mağaza vergisi, ülke, kampanya veya ödeme kanalı sonucu değiştirebilir. Ürün sayfasındaki rakamı 'bugünün kesin Türkiye fiyatı' diye yayımlamadan önce ülke ve ödeme kanalını belirtin. Bilinmeyen fiyatı null bırakmak, yanlış kesinlikten daha iyi bir editoryal karardır. Bu yazı fiyat teklifi veya satın alma önerisi değildir; resmî plan sayfalarını tarihle saklayan bir hesaplama şablonudur."]}
+      ],
+      "appIds":["notion","todoist","ticktick"],
+      "sources":[{"title":"Notion resmi fiyat planları","url":"https://www.notion.com/pricing"},{"title":"Todoist resmi fiyat planları","url":"https://www.todoist.com/pricing?lang=en"},{"title":"TickTick resmi yükseltme sayfası","url":"https://ticktick.com/upgrade?language=en_us"}],
+      "method":"source-research","publishedAt":"2026-11-15","updatedAt":"2026-11-15"
+    }
+  ],
+  "lists": [
+    {
+      "id":"hafta-2026-11-09-15-kaynakli-baslangic",
+      "title":"Bu haftanın kaynaklı başlangıç seçkisi",
+      "summary":"Resmi sayfalardaki kapsam ve veri sahipliği sinyallerinden hareket eden editoryal başlangıç listesi; indirme veya popülerlik sıralaması değildir.",
+      "period":"week","startDate":"2026-11-09","endDate":"2026-11-15",
+      "entries":[
+        {"appId":"obsidian","reason":"Resmi belgeler yerel Markdown dosyalarını, çevrimdışı erişimi ve üç platform için Sync kapsamını açıkça anlatıyor; veri sahipliği sorusunu ilk sıraya taşıyor."},
+        {"appId":"notion","reason":"Resmi Free plan sayfası bireysel çalışma alanı, 5 MB dosya sınırı ve masaüstü/mobil çevrimdışı kullanımını aynı plan karşılaştırmasında gösteriyor."},
+        {"appId":"antennapod","reason":"Resmi sayfalar Android odağını, indirip çevrimdışı dinlemeyi ve uygulamanın reklam eklemediğini belirtiyor; hesap/senkronizasyon ayrımı özellikle not edilmeli."}
+      ],
+      "method":"Resmi yayıncı sayfalarına dayalı editoryal seçki; mağaza indirme sıralaması değildir."
+    },
+    {
+      "id":"ay-2026-11-veri-ve-gorev",
+      "title":"Kasım 2026: veri, görev ve belge sınırlarını görünür kılanlar",
+      "summary":"Kullanıcının işini seçmeden önce hangi sınıra bakması gerektiğini anlatan aylık editoryal seçki; yıldız veya indirme sıralaması değildir.",
+      "period":"month","startDate":"2026-11-01","endDate":"2026-11-30",
+      "entries":[
+        {"appId":"acrobat","reason":"Adobe'nin resmi planları görüntüleme ile düzenleme/dönüştürme/dışa aktarma işlerini farklılaştırıyor; PDF görevi seçiminin neden tek satır olmaması gerektiğini gösteriyor."},
+        {"appId":"todoist","reason":"Resmi fiyat sayfası ücretsiz Beginner planını proje, filtre ve geçmiş sınırlarıyla açıklıyor; görev yönetiminde limitlerin maliyet hesabına etkisini görünür kılıyor."},
+        {"appId":"vlc","reason":"VideoLAN resmi sayfası yerel dosya oynatmayı, çoklu platformu ve reklamsız yaklaşımı birlikte beyan ediyor; medya uygulamasında abonelik gerekmeyebilen modeli örnekliyor."}
+      ],
+      "method":"Resmi yayıncı açıklamalarından oluşturulmuş aylık editoryal seçki; kullanıcı oylaması, indirme veya puan sıralaması değildir."
+    },
+    {
+      "id":"evergreen-platform-karari",
+      "title":"Platform seçmeden önce sorulacak üç soru",
+      "summary":"Android, iOS ve Windows kapsamını tek bir rozet yerine görev ve veri koşullarıyla okumak için sürekli geçerli editoryal başlangıç listesi.",
+      "period":"evergreen","startDate":"2026-11-15","endDate":"2026-11-15",
+      "entries":[
+        {"appId":"obsidian","reason":"Notların yerel dosya olarak kalması ve Sync'in platform kapsamının ayrı okunabilmesi, uzun vadeli taşınabilirlik sorusunu öne çıkarıyor."},
+        {"appId":"notion","reason":"Aynı Free plan içinde dosya, çevrimdışı sayfa ve ekip kullanımını ayırmak gerektiği resmi plan tablosunda görülebiliyor."},
+        {"appId":"firefox","reason":"Tarayıcı seçimi yapılırken mağaza varlığından önce hesap, senkronizasyon, uzantı ve gizlilik koşulları ayrı ayrı kaynaklandırılmalıdır; bu kayıt henüz özellik doğrulaması değil, inceleme adayıdır."}
+      ],
+      "method":"Editoryal karar soruları; doğrulanmış indirme, puan veya popülerlik sıralaması değildir."
+    }
+  ]
+}

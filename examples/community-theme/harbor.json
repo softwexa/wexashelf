@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "id": "community-harbor",
+  "name": "Harbor",
+  "description": "A calm, high-contrast catalog with a top navigation and compact editorial sections.",
+  "author": "WexaShelf community",
+  "template": "atlas",
+  "layout": "topbar",
+  "density": "compact",
+  "tokens": {
+    "background": "#f4f7f9",
+    "surface": "#ffffff",
+    "surfaceRaised": "#e4edf2",
+    "foreground": "#173044",
+    "muted": "#506577",
+    "accent": "#176b70",
+    "accentContrast": "#ffffff",
+    "border": "#c6d4df"
+  },
+  "sections": ["discovery", "weekly", "toolbox", "guides", "trending", "workflows"]
+}

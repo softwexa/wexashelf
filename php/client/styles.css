@@ -1,0 +1,5 @@
+@import './fonts.css';
+@import '../../src/app/globals.css';
+@import '../../src/app/product.css';
+@import '../../src/app/themes.css';
+@import '../../src/app/theme-customization.css';

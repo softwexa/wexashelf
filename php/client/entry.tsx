@@ -1,0 +1,12 @@
+import { registerRuntimeLocalePacks } from '../../src/lib/i18n-registry';
+import { createRoot } from 'react-dom/client';
+import CatalogExperience from '../../src/components/CatalogExperience';
+import PolicyPage from '../../src/components/PolicyPage';
+import { bootstrap, prefixRenderedLinks } from './runtime';
+import './styles.css';
+const localeErrors = registerRuntimeLocalePacks(bootstrap.runtimeLocalePacks);
+if(localeErrors.length) throw new Error('Invalid runtime language resources.');
+const root = document.getElementById('wexa-root')!;
+prefixRenderedLinks(root);
+const policies = ['yontem', 'hakkimizda', 'gizlilik', 'duzeltme-politikasi'];
+createRoot(root).render(<CatalogExperience {...bootstrap}>{policies.includes(bootstrap.path?.[0]) ? <PolicyPage slug={bootstrap.path[0]} /> : undefined}</CatalogExperience>);

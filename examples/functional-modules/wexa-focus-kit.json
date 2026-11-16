@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "id": "wexa-focus-kit",
+  "name": "Focus kit",
+  "description": "A reviewed shortlist of note and task apps with live catalogue links.",
+  "version": "1.0.0",
+  "requires": "wexashelf-module-api:2",
+  "blocks": [
+    {
+      "id": "focus-apps",
+      "type": "curated-apps",
+      "appIds": [
+        "notion",
+        "obsidian",
+        "todoist",
+        "ticktick"
+      ],
+      "locales": {
+        "en": {
+          "title": "Build your focus kit",
+          "description": "Explore these note and task tools. Compare their recorded features before choosing."
+        },
+        "tr": {
+          "title": "Odak araçlarını seç",
+          "description": "Bu not ve görev araçlarını keşfet. Seçmeden önce kayıtlı özelliklerini karşılaştır."
+        }
+      }
+    }
+  ]
+}

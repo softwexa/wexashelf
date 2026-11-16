@@ -1,0 +1,4 @@
+.controls { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:17px; }
+.controls label { display:flex; flex-direction:column; gap:8px; font-size:12px; color:var(--muted); }
+.controls input, .controls textarea { width:100%; min-width:0; min-height:44px; font:inherit; font-size:12px; color:var(--foreground); background:var(--background); border:1px solid var(--border); border-radius:6px; padding:10px 12px; }
+@media(max-width:760px) { .controls { grid-template-columns:1fr; } }

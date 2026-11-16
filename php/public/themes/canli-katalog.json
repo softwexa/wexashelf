@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "canli-katalog",
+  "name": "Canlı Katalog",
+  "description": "Erik moru, şeftali ve yatay raflarla sıcak bir uygulama kataloğu.",
+  "template": "catalog",
+  "layout": "topbar",
+  "density": "comfortable",
+  "tokens": {
+    "background": "#fcf5ef",
+    "surface": "#fffaf6",
+    "surfaceRaised": "#f4e5df",
+    "foreground": "#432c46",
+    "muted": "#786171",
+    "accent": "#713f6b",
+    "accentContrast": "#ffffff",
+    "border": "#e3cfd8"
+  },
+  "sections": [
+    "discovery",
+    "weekly",
+    "trending",
+    "toolbox",
+    "guides",
+    "workflows"
+  ]
+}

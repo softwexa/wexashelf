@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "tide",
+  "name": "Tide",
+  "description": "An open blue cross-device guide with category-led app rows and a clear comparison section.",
+  "author": "Softwexa",
+  "template": "tide",
+  "layout": "topbar",
+  "density": "comfortable",
+  "tokens": {
+    "background": "#f6fbfd",
+    "surface": "#ffffff",
+    "surfaceRaised": "#e4f0f5",
+    "foreground": "#163b51",
+    "muted": "#526e7e",
+    "accent": "#116e93",
+    "accentContrast": "#ffffff",
+    "border": "#c8dce5"
+  },
+  "presentation": {
+    "font": "sans",
+    "width": "wide",
+    "radius": "soft",
+    "hero": "spacious",
+    "cardStyle": "outline"
+  },
+  "sections": [
+    "discovery",
+    "toolbox",
+    "trending",
+    "guides",
+    "weekly",
+    "workflows"
+  ]
+}

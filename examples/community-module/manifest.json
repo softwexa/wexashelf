@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "community-start-here",
+  "name": "Start here",
+  "description": "Localized shortcuts to app discovery and practical guides.",
+  "version": "1.0.0",
+  "requires": "wexashelf-module-api:1",
+  "cards": [
+    {
+      "id": "discover-apps",
+      "locales": {
+        "en": { "title": "Find your next app", "description": "Browse apps by the task you want to complete.", "href": "/en/apps" },
+        "tr": { "title": "Sıradaki uygulamanı bul", "description": "Yapmak istediğin işe göre uygulamaları keşfet.", "href": "/kesfet" }
+      }
+    },
+    {
+      "id": "read-guides",
+      "locales": {
+        "en": { "title": "Start with a guide", "description": "Read practical guidance before choosing or switching apps.", "href": "/en/guides" },
+        "tr": { "title": "Bir rehberle başla", "description": "Uygulama seçmeden veya değiştirmeden önce pratik rehberleri oku.", "href": "/rehberler" }
+      }
+    }
+  ]
+}

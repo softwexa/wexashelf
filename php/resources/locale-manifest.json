@@ -1,0 +1,14 @@
+[
+  {
+    "code": "en",
+    "label": "English",
+    "intlLocale": "en-GB",
+    "direction": "ltr"
+  },
+  {
+    "code": "tr",
+    "label": "Türkçe",
+    "intlLocale": "tr-TR",
+    "direction": "ltr"
+  }
+]

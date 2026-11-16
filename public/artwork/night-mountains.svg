@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-labelledby="title desc">
+<title id="title">Quiet mountain night</title><desc id="desc">Original geometric landscape for WexaShelf: a pale moon above three layers of navy mountains.</desc>
+<rect width="1600" height="1000" fill="#101a2b"/>
+<circle cx="1220" cy="210" r="66" fill="#c7e9df"/>
+<g fill="#7895a7"><circle cx="180" cy="160" r="3"/><circle cx="420" cy="90" r="2"/><circle cx="730" cy="200" r="3"/><circle cx="960" cy="100" r="2"/><circle cx="1430" cy="120" r="3"/><circle cx="1520" cy="300" r="2"/></g>
+<path d="M0 650L180 430L320 560L570 290L850 590L1010 470L1250 610L1470 370L1600 500V1000H0Z" fill="#24394c"/>
+<path d="M0 780L250 580L420 710L730 470L990 730L1190 570L1420 720L1600 640V1000H0Z" fill="#192e40"/>
+<path d="M0 870L210 800L440 850L650 710L900 850L1160 760L1420 850L1600 780V1000H0Z" fill="#112333"/>
+<path d="M0 940Q350 890 700 940T1400 930L1600 920V1000H0Z" fill="#0d1c2a"/>
+</svg>

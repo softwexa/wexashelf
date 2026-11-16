@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "porcelain",
+  "name": "Porcelain",
+  "description": "A quiet, search-first gallery with generous spacing and a teal comparison feature.",
+  "author": "Softwexa",
+  "template": "porcelain",
+  "layout": "topbar",
+  "density": "comfortable",
+  "tokens": {
+    "background": "#f8faf9",
+    "surface": "#ffffff",
+    "surfaceRaised": "#e8f0ed",
+    "foreground": "#172c35",
+    "muted": "#52646c",
+    "accent": "#176c68",
+    "accentContrast": "#ffffff",
+    "border": "#cfddda"
+  },
+  "presentation": {
+    "font": "sans",
+    "width": "wide",
+    "radius": "soft",
+    "hero": "spacious",
+    "cardStyle": "outline"
+  },
+  "sections": [
+    "discovery",
+    "trending",
+    "weekly",
+    "guides",
+    "toolbox",
+    "workflows"
+  ]
+}

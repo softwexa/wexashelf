@@ -1,0 +1,75 @@
+.panel,
+.identities {
+  min-width: 0;
+}
+.panel p,
+.identities p {
+  color: var(--muted);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 16px 0;
+}
+.panel button,
+.panel input,
+.panel select,
+.panel summary,
+.identities button,
+.identities input,
+.identities select {
+  min-height: 44px;
+}
+.identity,
+.candidate {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 18px 0;
+  min-width: 0;
+}
+.freshness {
+  list-style: none;
+  padding: 0;
+}
+.freshness li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  overflow-wrap: anywhere;
+}
+.diff {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.diff pre {
+  background: var(--background);
+  padding: 12px;
+  overflow: auto;
+  max-height: 420px;
+  font-size: 12px;
+}
+.break {
+  overflow-wrap: anywhere;
+}
+.candidate summary {
+  cursor: pointer;
+  padding: 12px 0;
+}
+@media (max-width: 700px) {
+  .diff {
+    grid-template-columns: 1fr;
+  }
+  .identity,
+  .candidate {
+    padding: 12px;
+  }
+}

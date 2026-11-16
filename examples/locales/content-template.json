@@ -1,0 +1,257 @@
+{
+  "guides": [
+    {
+      "id": "notes-migration",
+      "title": "A new home for your notes",
+      "description": "Plan a move between Notion and Obsidian with a small sample.",
+      "kind": "migration",
+      "appIds": [
+        "notion",
+        "obsidian"
+      ],
+      "steps": [
+        "Make an independent backup of your existing notes first.",
+        "Check the source app’s export documentation and the destination’s import documentation.",
+        "Try a few notes, then compare links, images and formatting.",
+        "Do not delete your old archive before checking the samples. This guide does not guarantee a successful transfer."
+      ],
+      "slug": "notes-migration"
+    },
+    {
+      "id": "task-routine",
+      "title": "A lighter task list",
+      "description": "Build a sustainable routine with Todoist or TickTick.",
+      "kind": "guide",
+      "appIds": [
+        "todoist",
+        "ticktick"
+      ],
+      "steps": [
+        "Collect your tasks in a single inbox.",
+        "Write each task as a practical next step.",
+        "Choose a short list for today; do not add deadlines to tasks that do not need one.",
+        "Check whether notifications and calendar features are included in your plan."
+      ],
+      "slug": "task-routine"
+    },
+    {
+      "id": "pdf-choice",
+      "title": "Choose a PDF tool for your needs",
+      "description": "Separate reading, annotation and editing requirements.",
+      "kind": "guide",
+      "appIds": [
+        "acrobat",
+        "xodo"
+      ],
+      "steps": [
+        "Identify whether you need reading, annotation or text editing.",
+        "Try a sample PDF that contains no sensitive information.",
+        "After editing, check accented characters, page layout and links.",
+        "Verify that the features are available in your device’s version and your plan."
+      ],
+      "slug": "pdf-choice"
+    }
+  ],
+  "workflows": [
+    {
+      "id": "research",
+      "title": "From curiosity to organized notes",
+      "description": "An example workflow for organizing research with its sources.",
+      "steps": [
+        {
+          "title": "Find the source",
+          "description": "Save its URL and the date you accessed it.",
+          "appId": "firefox"
+        },
+        {
+          "title": "Write in your own words",
+          "description": "Turn your findings into short notes and add the source link.",
+          "appId": "obsidian"
+        },
+        {
+          "title": "Choose the next step",
+          "description": "Manually add the task that follows from your research to your task list.",
+          "appId": "todoist"
+        }
+      ],
+      "slug": "research"
+    },
+    {
+      "id": "reading",
+      "title": "One document, three small steps",
+      "description": "Keep track of important points while reading a PDF.",
+      "steps": [
+        {
+          "title": "Make a copy",
+          "description": "Keep the original document and open a working copy.",
+          "appId": "xodo"
+        },
+        {
+          "title": "Mark important points",
+          "description": "Try the annotation tools available in your version.",
+          "appId": "acrobat"
+        },
+        {
+          "title": "Write a summary",
+          "description": "Prepare a short summary with the document name and page numbers.",
+          "appId": "notion"
+        }
+      ],
+      "slug": "reading"
+    },
+    {
+      "id": "weekly",
+      "title": "A calm start to the week",
+      "description": "A short routine for reviewing tasks and notes.",
+      "steps": [
+        {
+          "title": "Review open tasks",
+          "description": "Close completed tasks and remove unnecessary ones.",
+          "appId": "ticktick"
+        },
+        {
+          "title": "Organize your notes",
+          "description": "Move scattered notes to the relevant project pages.",
+          "appId": "notion"
+        },
+        {
+          "title": "Choose a few priorities",
+          "description": "Create a manageable list for the week.",
+          "appId": "todoist"
+        }
+      ],
+      "slug": "weekly"
+    }
+  ],
+  "categories": [
+    {
+      "id": "all",
+      "label": "All",
+      "slug": "all"
+    },
+    {
+      "id": "productivity",
+      "label": "Productivity",
+      "slug": "productivity"
+    },
+    {
+      "id": "notes",
+      "label": "Notes",
+      "slug": "notes"
+    },
+    {
+      "id": "documents",
+      "label": "Documents",
+      "slug": "documents"
+    },
+    {
+      "id": "media",
+      "label": "Media",
+      "slug": "media"
+    },
+    {
+      "id": "browser",
+      "label": "Browser",
+      "slug": "browser"
+    },
+    {
+      "id": "design",
+      "label": "Design",
+      "slug": "design"
+    }
+  ],
+  "platformLabels": {
+    "android": "Android",
+    "ios": "iOS",
+    "windows": "Windows"
+  },
+  "factLabels": {
+    "offline": "Offline use",
+    "sync": "Sync across devices",
+    "export": "Export",
+    "account-free": "Use without an account",
+    "ad-free": "Ad-free use",
+    "ocr": "OCR / text recognition"
+  },
+  "evidenceLabels": {
+    "supported": "Supported",
+    "limited": "Limited",
+    "unsupported": "Unsupported",
+    "unknown": "Unverified"
+  },
+  "pageNames": {
+    "yayincilar": "Publishers",
+    "kesfet": "Explore apps",
+    "karsilastir": "Compare apps",
+    "listeler": "Editorial selections",
+    "rehberler": "Guides",
+    "kaydedilenler": "Saved apps",
+    "ucretsiz-planlar": "Explore plans",
+    "platform-farklari": "Platform differences",
+    "is-akislari": "Workflows",
+    "gecis-rehberleri": "Migration guides",
+    "ayarlar": "Themes and extensions",
+    "blog": "App journal",
+    "kategoriler": "App categories",
+    "secim-sihirbazi": "Find an app for your needs",
+    "maliyet-hesapla": "Calculate app costs",
+    "yontem": "Our review and selection method",
+    "hakkimizda": "About WexaShelf",
+    "gizlilik": "Verilerin ve gizlilik",
+    "duzeltme-politikasi": "Information correction policy",
+    "araclar": "Decision tools",
+    "submit-app": "Submit an app"
+  },
+  "tags": [
+    {
+      "id": "açık kaynak",
+      "label": "open source",
+      "slug": "open-source"
+    },
+    {
+      "id": "bağlantılı not",
+      "label": "linked notes",
+      "slug": "linked-notes"
+    },
+    {
+      "id": "doküman",
+      "label": "documents",
+      "slug": "documents"
+    },
+    {
+      "id": "işbirliği",
+      "label": "collaboration",
+      "slug": "collaboration"
+    },
+    {
+      "id": "medya oynatıcı",
+      "label": "media player",
+      "slug": "media-player"
+    },
+    {
+      "id": "not alma",
+      "label": "notes",
+      "slug": "note-taking"
+    },
+    {
+      "id": "reklamsız",
+      "label": "ad-free",
+      "slug": "ad-free"
+    },
+    {
+      "id": "veritabanı",
+      "label": "database",
+      "slug": "database"
+    },
+    {
+      "id": "yerel dosya",
+      "label": "local files",
+      "slug": "local-files"
+    },
+    {
+      "id": "çevrimdışı",
+      "label": "offline",
+      "slug": "offline"
+    }
+  ]
+}

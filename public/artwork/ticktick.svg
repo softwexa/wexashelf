@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" width="96" height="96" role="img" aria-labelledby="title desc">
+<title id="title">TickTick neutral catalog monogram</title>
+<desc id="desc">Original WexaShelf geometric initials TT; not the publisher logo.</desc>
+<rect width="96" height="96" rx="20" fill="#152236"/>
+<rect x="1" y="1" width="94" height="94" rx="19" fill="none" stroke="#2c4557" stroke-width="2"/>
+<g transform="translate(17.2 30.4) scale(1.1)" fill="none" stroke="#8de5ce" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1 2H23M12 2V30" transform="translate(0 0)"/><path d="M1 2H23M12 2V30" transform="translate(32 0)"/></g>
+<path d="M34 82H62" stroke="#527b87" stroke-width="2" stroke-linecap="round"/>
+</svg>

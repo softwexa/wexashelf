@@ -1,0 +1,46 @@
+<?php
+declare(strict_types=1);
+// Uses only the explicitly named disposable locale schema and private temporary pack storage.
+require __DIR__.'/../app/bootstrap.php';
+use WexaShelf\{ApiException,Database,Repository,LanguagePacks,Localization,Translations,PublicSite,SEOSettings};
+if($argc!==2)throw new RuntimeException('Usage: php php/tests/language-pack-runtime.php PRIVATE_QA_DATABASE_JSON');
+$config=json_decode(file_get_contents($argv[1]),true,512,JSON_THROW_ON_ERROR);if(!isset($config['database']))$config=['database'=>$config];$config['database']['name']='wexashelf_locale_070';
+$db=Database::connect($config);Database::migrate($db);$repo=new Repository($db,$config);if($repo->allRecords())throw new RuntimeException('This test requires the empty disposable wexashelf_locale_070 schema.');
+$storage=sys_get_temp_dir().'/wexa-runtime-pack-'.bin2hex(random_bytes(8));mkdir($storage,0700);$prior=getenv('WEXA_STORAGE_PATH');putenv('WEXA_STORAGE_PATH='.$storage);
+function packAssert(bool $ok,string $label):void{if(!$ok)throw new RuntimeException($label);}
+function packReject(callable $fn,int $status,string $label):void{try{$fn();}catch(ApiException $e){packAssert($e->status===$status,$label.' status '.$e->status);return;}throw new RuntimeException($label);}
+function packHtml(array $catalog,array $config,string $path):string{ob_start();PublicSite::render($catalog,$config,$path,[]);return ob_get_clean();}
+$service=new LanguagePacks($db,$repo);$translations=new Translations($db,$repo);$db->beginTransaction();
+try{
+ $seed=json_decode(file_get_contents(__DIR__.'/../resources/seed.json'),true,512,JSON_THROW_ON_ERROR);unset($seed['translations']);$repo->seed($seed);
+ $package=$service->handle(['action'=>'export','locale'=>'en'])['package'];$package['locale']=$package['ui']['locale']='de';$package['ui']['label']='Deutsch';$package['ui']['intlLocale']='de-DE';$package['server']['messages']['homeTitle']='Deutsche Testseite';$package['server']['routes']['kesfet']=$package['server']['routes']['uygulama']='anwendungen';
+ packAssert(LanguagePacks::preview($package)['valid'],'Complete declarative package validates');
+ $bad=$package;unset($bad['ui']['messages'][array_key_first($bad['ui']['messages'])]);packAssert(!LanguagePacks::preview($bad)['valid'],'Missing UI message rejected');
+ $bad=$package;$key=array_key_first($bad['ui']['messages']);$bad['ui']['messages'][$key].=' {unexpected}';packAssert(!LanguagePacks::preview($bad)['valid'],'Placeholder mismatch rejected');
+ $bad=$package;$bad['content']['categories'][0]['id']='changed';packAssert(!LanguagePacks::preview($bad)['valid'],'Stable content identity rejected');
+ $bad=$package;$bad['server']['routes']['blog']='anwendungen';packAssert(!LanguagePacks::preview($bad)['valid'],'Route collision rejected');
+ $bad=$package;$bad['server']['routes']['blog']='api';packAssert(!LanguagePacks::preview($bad)['valid'],'Reserved route rejected');
+ $bad=$package;$bad['ui']['messages'][$key]='<script>alert(1)</script>';packAssert(!LanguagePacks::preview($bad)['valid'],'Executable markup rejected');
+ $bad=$package;$bad['ui']['messages'][$key]=str_repeat('a',LanguagePacks::MAX_BYTES);packAssert(!LanguagePacks::preview($bad)['valid'],'Oversize package rejected');
+ foreach(['ui','server','content'] as $group){$bad=$package;$bad[$group]='invalid';packAssert(!LanguagePacks::preview($bad)['valid'],'Malformed '.$group.' rejected');}
+ $state=$service->handle(['action'=>'import','revision'=>0,'package'=>$package]);packAssert($state['revision']===1&&!isset(Localization::packs()['de']),'Import remains disabled');packAssert((fileperms($storage.'/language-packs.json')&0777)===0600,'Package file private permissions');
+ packReject(fn()=>$service->handle(['action'=>'activate','revision'=>0,'locale'=>'de']),409,'Optimistic package revision');
+ $state=$service->handle(['action'=>'activate','revision'=>1,'locale'=>'de']);packAssert(isset(Localization::packs()['de'])&&Localization::complete('de'),'Activation registers complete pack at runtime');
+ $publicConfig=['site'=>['url'=>'https://catalog.example.org/sub','indexing'=>true],'seo'=>SEOSettings::defaults(['site'=>['indexing'=>true]]),'localization'=>$translations->settings()];$catalog=$repo->getPublicSnapshot();$html=packHtml($catalog,$publicConfig,'/de');packAssert(str_contains($html,'Deutsche Testseite')&&str_contains($html,'"runtimeLocalePacks":[{"schemaVersion":1,"locale":"de"'),'Runtime SSR and browser bootstrap without rebuild');packAssert(Localization::route('/de/anwendungen')===['locale'=>'de','parts'=>['kesfet']],'Dynamic route resolved');
+ packReject(fn()=>$service->handle(['action'=>'import','revision'=>2,'package'=>$package]),400,'Active replacement rejected');
+ $state=$service->handle(['action'=>'disable','revision'=>2,'locale'=>'de']);packAssert(!isset(Localization::packs()['de']),'Unused pack disabled');$state=$service->handle(['action'=>'activate','revision'=>3,'locale'=>'de']);
+ $settings=$translations->settings();$settings['sourceLocale']='de';$translations->saveSettings($settings);packReject(fn()=>$service->handle(['action'=>'disable','revision'=>4,'locale'=>'de']),400,'Source default prevents disable');$settings=$translations->settings();$settings['sourceLocale']='en';$translations->saveSettings($settings);
+ $source=current(array_filter($repo->allRecords(),fn($r)=>$r['kind']==='article'));$legacy=$source;$source['id']=$source['data']['id']='new-english-original';$source['revision']=0;$source['status']='published';$source['seoApproved']=true;unset($source['sourceLocale']);$source=$repo->saveRecord($source);packAssert($source['sourceLocale']==='en','New source defaults to English');packAssert(Translations::sourceLocale($legacy)==='tr','Legacy source remains Turkish');
+ packReject(fn()=>$repo->saveRecord(array_replace($source,['sourceLocale'=>'tr'])),409,'Existing source language immutable');
+ $fields=[];foreach(Translations::fieldMap($source) as $field)$fields[$field['path']]='Türkçe '.$field['path'];$input=['kind'=>'article','id'=>$source['id'],'locale'=>'tr','slug'=>'turkce-yazi','revision'=>0,'sourceRevision'=>$source['revision'],'status'=>'published','publishAt'=>null,'seoApproved'=>true,'fields'=>$fields,'seo'=>[],'reviewNote'=>'Synthetic reviewed translation'];
+ $translated=$translations->save($input);packAssert(!$translated['seoApproved'],'Initial translation needs separate approval');$translated=$translations->save(array_replace($translated,['seoApproved'=>true]));packAssert($translated['seoApproved'],'Unchanged second review approves');
+ packReject(fn()=>$translations->save(array_replace($input,['locale'=>'en','slug'=>'same-source'])),400,'Same-source translation rejected');
+ $de=$input;$de['locale']='de';$de['slug']='deutscher-test';$de['status']='draft';$de['seoApproved']=false;$translations->save($de);packReject(fn()=>$service->handle(['action'=>'disable','revision'=>4,'locale'=>'de']),400,'Translation reference prevents disable');
+ $rows=$translations->publicRows([['kind'=>'article','id'=>$source['id']]]);packAssert(count($rows)===1&&$rows[0]['locale']==='tr','Bounded public translation lookup');
+ $disableSettings=$translations->settings();foreach($disableSettings['locales'] as &$row)if($row['code']==='de')$row['enabled']=false;unset($row);packReject(fn()=>$translations->saveSettings($disableSettings),400,'Locale settings cannot bypass content reference guard');
+ $export=$service->handle(['action'=>'export','locale'=>'de']);packAssert($export['package']===$package,'Export preserves package');
+ $snapshot=$repo->getPublicSnapshot();packAssert(Localization::entry($snapshot,'article',$source['id'],'en')!==null&&Localization::entry($snapshot,'article','turkce-yazi','tr',true)!==null,'Source and reverse translation public entries');
+ $db->prepare('DELETE FROM ws_translations WHERE locale=?')->execute(['de']);$db->prepare('DELETE FROM ws_translation_revisions WHERE locale=?')->execute(['de']);$german=$source;$german['id']=$german['data']['id']='german-source';$german['sourceLocale']='de';$german['revision']=0;$german['status']='draft';$german['seoApproved']=false;$repo->saveRecord($german);packReject(fn()=>$service->handle(['action'=>'disable','revision'=>4,'locale'=>'de']),400,'Source record reference prevents disable');
+ $stored=json_decode(file_get_contents($storage.'/language-packs.json'),true);$stored['packages']['de']['checksum']=str_repeat('0',64);file_put_contents($storage.'/corrupt.tmp',json_encode($stored));rename($storage.'/corrupt.tmp',$storage.'/language-packs.json');packAssert(LanguagePacks::runtimePackages()===[]&&!isset(Localization::packs()['de']),'Corrupt package checksum fails closed');$packState=$service->state();$germanState=current(array_filter($packState['packs'],fn($p)=>$p['locale']==='de'));packAssert(in_array('Stored package checksum mismatch.',$germanState['issues'],true),'Corrupt checksum visible to owner');
+ echo "PASS runtime language packs + source locale service: strict previews, private import, activation/SSR/bootstrap without build, revision/default/reference guards, export, legacy TR/new EN and reverse TR translation.\n";
+}finally{if($db->inTransaction())$db->rollBack();foreach(glob($storage.'/{*,.*}',GLOB_BRACE) as $file)if(is_file($file))unlink($file);rmdir($storage);putenv($prior===false?'WEXA_STORAGE_PATH':'WEXA_STORAGE_PATH='.$prior);}

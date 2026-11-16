@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "index",
+  "name": "Index",
+  "description": "A precise browse workspace with local category filters, compact app rows and an editorial rail.",
+  "author": "Softwexa",
+  "template": "index",
+  "layout": "topbar",
+  "density": "compact",
+  "tokens": {
+    "background": "#f0f3f4",
+    "surface": "#ffffff",
+    "surfaceRaised": "#e2eced",
+    "foreground": "#192b31",
+    "muted": "#566b72",
+    "accent": "#28636b",
+    "accentContrast": "#ffffff",
+    "border": "#c2d3d7"
+  },
+  "presentation": {
+    "font": "sans",
+    "width": "wide",
+    "radius": "square",
+    "hero": "compact",
+    "cardStyle": "flat"
+  },
+  "sections": [
+    "discovery",
+    "workflows",
+    "trending",
+    "guides",
+    "weekly",
+    "toolbox"
+  ]
+}

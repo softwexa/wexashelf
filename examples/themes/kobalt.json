@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "kobalt-ornek",
+  "name": "Kobalt · Şema örneği",
+  "description": "Üst menü, sıkı yoğunluk ve farklı bölüm sırası gösteren içe aktarım örneği.",
+  "layout": "topbar",
+  "density": "compact",
+  "tokens": {
+    "background": "#101527",
+    "surface": "#19213a",
+    "surfaceRaised": "#243252",
+    "foreground": "#f1f5ff",
+    "muted": "#a6b4d0",
+    "accent": "#8cb7ff",
+    "accentContrast": "#101c32",
+    "border": "#364769"
+  },
+  "sections": ["discovery", "toolbox", "trending", "weekly", "workflows", "guides"]
+}

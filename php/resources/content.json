@@ -1,0 +1,191 @@
+{
+  "guides": [
+    {
+      "id": "notes-migration",
+      "title": "Notlarına yeni bir yuva",
+      "description": "Notion ve Obsidian arasında geçişi küçük bir örnekle planla.",
+      "kind": "migration",
+      "appIds": [
+        "notion",
+        "obsidian"
+      ],
+      "steps": [
+        "Önce mevcut notlarının bağımsız bir yedeğini al.",
+        "Kaynak uygulamanın dışa aktarma, hedefin içe aktarma belgelerini kontrol et.",
+        "Birkaç notla deneme yap; bağlantıları, görselleri ve biçimlendirmeyi karşılaştır.",
+        "Örnekleri doğrulamadan eski arşivini silme. Bu rehber aktarım garantisi değildir."
+      ]
+    },
+    {
+      "id": "task-routine",
+      "title": "Daha hafif bir görev listesi",
+      "description": "Todoist veya TickTick ile sürdürülebilir bir düzen kur.",
+      "kind": "guide",
+      "appIds": [
+        "todoist",
+        "ticktick"
+      ],
+      "steps": [
+        "Aklındaki işleri tek bir gelen kutusunda topla.",
+        "Her görevi yapılabilir bir sonraki adım olarak yaz.",
+        "Bugün için küçük bir liste seç; tarih gerekmeyen işe tarih verme.",
+        "Bildirim ve takvim özelliklerinin kullandığın planda bulunup bulunmadığını kontrol et."
+      ]
+    },
+    {
+      "id": "pdf-choice",
+      "title": "PDF aracını ihtiyacına göre seç",
+      "description": "Okuma, açıklama ve düzenleme ihtiyaçlarını birbirinden ayır.",
+      "kind": "guide",
+      "appIds": [
+        "acrobat",
+        "xodo"
+      ],
+      "steps": [
+        "Okuma, not ekleme veya metin düzenleme ihtiyacını belirle.",
+        "Hassas bilgi içermeyen örnek bir PDF ile dene.",
+        "İşlem sonrası Türkçe karakterleri, sayfa düzenini ve bağlantıları kontrol et.",
+        "Özelliklerin cihazındaki sürümde ve planında bulunduğunu doğrula."
+      ]
+    }
+  ],
+  "workflows": [
+    {
+      "id": "research",
+      "title": "Meraktan derli toplu notlara",
+      "description": "Bir araştırmayı kaynaklarıyla birlikte düzenlemek için örnek akış.",
+      "steps": [
+        {
+          "title": "Kaynağı bul",
+          "description": "Kaynağın adresini ve erişim tarihini kaydet.",
+          "appId": "firefox"
+        },
+        {
+          "title": "Kendi cümlelerinle yaz",
+          "description": "Bulgularını kısa notlara dönüştür, kaynak bağlantısını ekle.",
+          "appId": "obsidian"
+        },
+        {
+          "title": "Sonraki adımı belirle",
+          "description": "Araştırmadan çıkan işi görev listene elle ekle.",
+          "appId": "todoist"
+        }
+      ]
+    },
+    {
+      "id": "reading",
+      "title": "Bir belge, üç küçük adım",
+      "description": "PDF okurken önemli noktaları kaybetme.",
+      "steps": [
+        {
+          "title": "Bir kopya oluştur",
+          "description": "Orijinal belgeyi sakla; çalışma kopyasını aç.",
+          "appId": "xodo"
+        },
+        {
+          "title": "Önemli noktaları işaretle",
+          "description": "Kullandığın sürümdeki açıklama araçlarını dene.",
+          "appId": "acrobat"
+        },
+        {
+          "title": "Özeti yaz",
+          "description": "Belge adı ve sayfa numaralarıyla kısa bir özet hazırla.",
+          "appId": "notion"
+        }
+      ]
+    },
+    {
+      "id": "weekly",
+      "title": "Haftaya sakin bir başlangıç",
+      "description": "Görev ve notlarını gözden geçirmek için kısa bir rutin.",
+      "steps": [
+        {
+          "title": "Açık işleri gözden geçir",
+          "description": "Tamamlananları kapat, gereksiz olanları kaldır.",
+          "appId": "ticktick"
+        },
+        {
+          "title": "Notlarını toparla",
+          "description": "Dağınık notları ilgili proje sayfalarına taşı.",
+          "appId": "notion"
+        },
+        {
+          "title": "Az sayıda öncelik seç",
+          "description": "Yapılabilir bir haftalık liste oluştur.",
+          "appId": "todoist"
+        }
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "all",
+      "label": "Tümü"
+    },
+    {
+      "id": "productivity",
+      "label": "Üretkenlik"
+    },
+    {
+      "id": "notes",
+      "label": "Not alma"
+    },
+    {
+      "id": "documents",
+      "label": "Belgeler"
+    },
+    {
+      "id": "media",
+      "label": "Medya"
+    },
+    {
+      "id": "browser",
+      "label": "Tarayıcı"
+    },
+    {
+      "id": "design",
+      "label": "Tasarım"
+    }
+  ],
+  "platformLabels": {
+    "android": "Android",
+    "ios": "iOS",
+    "windows": "Windows"
+  },
+  "factLabels": {
+    "offline": "Çevrimdışı kullanım",
+    "sync": "Cihazlar arası eşitleme",
+    "export": "Dışa aktarma",
+    "account-free": "Hesapsız kullanım",
+    "ad-free": "Reklamsız kullanım",
+    "ocr": "OCR / metin tanıma"
+  },
+  "evidenceLabels": {
+    "supported": "Destekleniyor",
+    "limited": "Sınırlı",
+    "unsupported": "Desteklenmiyor",
+    "unknown": "Doğrulanmadı"
+  },
+  "pageNames": {
+    "yayincilar": "Yayıncılar",
+    "kesfet": "Uygulamaları keşfet",
+    "karsilastir": "Uygulamaları karşılaştır",
+    "listeler": "Editör seçkileri",
+    "rehberler": "Rehberler",
+    "kaydedilenler": "Kaydedilenler",
+    "ucretsiz-planlar": "Planları keşfet",
+    "platform-farklari": "Platform farkları",
+    "is-akislari": "İş akışları",
+    "gecis-rehberleri": "Geçiş rehberleri",
+    "ayarlar": "Temalar ve eklentiler",
+    "blog": "Uygulama günlüğü",
+    "kategoriler": "Uygulama kategorileri",
+    "secim-sihirbazi": "İhtiyacına uygun uygulamayı bul",
+    "maliyet-hesapla": "Uygulama maliyetini hesapla",
+    "submit-app": "Submit an app",
+    "yontem": "İnceleme ve seçki yöntemimiz",
+    "hakkimizda": "WexaShelf hakkında",
+    "gizlilik": "Verilerin ve gizlilik",
+    "duzeltme-politikasi": "Bilgi düzeltme politikası"
+  }
+}

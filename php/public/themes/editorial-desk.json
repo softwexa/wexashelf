@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "editorial-desk",
+  "name": "Editorial Desk",
+  "description": "An editorial lead, reading column and source-backed app selections.",
+  "template": "magazine",
+  "layout": "topbar",
+  "density": "comfortable",
+  "tokens": {
+    "background": "#f1f4f8",
+    "surface": "#ffffff",
+    "surfaceRaised": "#e5ecf5",
+    "foreground": "#182b49",
+    "muted": "#52627a",
+    "accent": "#244b8a",
+    "accentContrast": "#ffffff",
+    "border": "#c7d3e3"
+  },
+  "sections": [
+    "discovery",
+    "guides",
+    "weekly",
+    "trending",
+    "toolbox",
+    "workflows"
+  ]
+}

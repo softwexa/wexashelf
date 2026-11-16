@@ -1,0 +1,302 @@
+{
+  "version": "0.6.0",
+  "scope": "Local PHP/MySQL implementation; no deployment, push or paid provider calls",
+  "features": [
+    {
+      "id": "multilingual-seo",
+      "behavior": "English default; reviewed content translations, locale URL packs, canonical/hreflang/sitemaps and per-language homepage metadata",
+      "status": "implemented-and-locally-verified",
+      "evidence": "php/tests/localization.php",
+      "additionalEvidence": [
+        "php/tests/translations.php",
+        "artifacts/growth-qa/receipts/homepage-seo-php-mysql.json"
+      ]
+    },
+    {
+      "id": "community-translation",
+      "behavior": "Complete UI/static/server language packs, stable keys, validators and contributor examples",
+      "status": "implemented-and-locally-verified",
+      "evidence": "scripts/check-locales.mjs"
+    },
+    {
+      "id": "editorial-pages",
+      "behavior": "Intent, permanent comparison, alternatives, author and test-lab documents with sources/revisions",
+      "status": "implemented-and-locally-verified",
+      "evidence": "php/tests/growth.php",
+      "additionalEvidence": [
+        "artifacts/growth-qa/receipts/growth-php-mysql.json"
+      ]
+    },
+    {
+      "id": "seo-insights",
+      "behavior": "Topic intent checks, internal links/orphans, CSV opportunities and 301/410 lifecycle controls",
+      "status": "implemented-and-locally-verified",
+      "evidence": "php/tests/growth.php",
+      "additionalEvidence": [
+        "artifacts/growth-qa/receipts/growth-php-mysql.json"
+      ]
+    },
+    {
+      "id": "verified-decision-tools",
+      "behavior": "Plan quotas, file operations, migration, device/region and privacy evidence; unknowns retained",
+      "status": "implemented-and-locally-verified",
+      "evidence": "php/tests/capabilities.php",
+      "additionalEvidence": [
+        "artifacts/growth-qa/receipts/capabilities-php-mysql.json"
+      ]
+    },
+    {
+      "id": "store-history",
+      "behavior": "Identity-specific dated observations; separate metric/region/platform trends",
+      "status": "implemented-and-locally-verified",
+      "evidence": "src/lib/recorded-trends.test.ts"
+    },
+    {
+      "id": "personal-setup",
+      "behavior": "Local collections, tasks, selected plans/seats, overlap notes and per-currency totals",
+      "status": "implemented-and-locally-verified",
+      "evidence": "artifacts/i18n/trends-setup-browser.json"
+    },
+    {
+      "id": "change-following",
+      "behavior": "Explicit local-browser follows and observation change history",
+      "status": "implemented-and-locally-verified",
+      "evidence": "artifacts/i18n/tools-browser.json"
+    },
+    {
+      "id": "developer-proposals",
+      "behavior": "Source-linked update proposals remain pending and cannot auto-publish",
+      "status": "implemented-and-locally-verified",
+      "evidence": "artifacts/i18n/proposal-directory-browser.json"
+    },
+    {
+      "id": "ai-workflows",
+      "behavior": "Explicit admin generation, source claims/brief/Q&A/impact, guarded translation drafts and estimated budget reservations",
+      "status": "implemented-and-locally-verified",
+      "evidence": "artifacts/verification/php-0.6.0.json",
+      "additionalEvidence": [
+        "artifacts/growth-qa/receipts/ai-translation-fixture.json"
+      ]
+    },
+    {
+      "id": "extensions",
+      "behavior": "Declarative package install/enable/uninstall, full-page theme preview and revision rollback",
+      "status": "implemented-and-locally-verified",
+      "evidence": "php/tests/extensions.php",
+      "additionalEvidence": [
+        "artifacts/growth-qa/receipts/extensions-php-mysql.json"
+      ]
+    },
+    {
+      "id": "editor-roles",
+      "behavior": "Owner/editor/publisher/analyst permissions and immediate session revocation",
+      "status": "implemented-and-locally-verified",
+      "evidence": "php/tests/editor-roles.php",
+      "additionalEvidence": [
+        "artifacts/growth-qa/receipts/roles-php-mysql.json"
+      ]
+    },
+    {
+      "id": "upgrade",
+      "behavior": "Private catalogue backup, checksum/source verification, idempotent schema migration and recovery",
+      "status": "implemented-and-locally-verified",
+      "evidence": "php/tests/upgrade.php",
+      "additionalEvidence": [
+        "artifacts/growth-qa/receipts/upgrade-php-mysql.json"
+      ]
+    },
+    {
+      "id": "visitor-performance",
+      "behavior": "Optional anonymous sampled web-vitals ingestion and bounded p75 display",
+      "status": "implemented-and-locally-verified",
+      "evidence": "artifacts/growth-qa/receipts/performance-rum-php-mysql.json"
+    },
+    {
+      "id": "developer-documentation",
+      "behavior": "English translation/theme/module/upgrade guides and working examples",
+      "status": "implemented-and-locally-verified",
+      "evidence": "artifacts/growth-qa/artifact-manifest.json"
+    },
+    {
+      "id": "ai-community-contribution",
+      "behavior": "Shared AGENTS guidance, Claude/Copilot adapters, English feature/architecture/testing/AI handbook, issue/PR templates and fork/dev/main maintainer review workflow",
+      "status": "implemented-and-locally-verified",
+      "evidence": "documents/README.md"
+    }
+  ],
+  "performance95": {
+    "status": "verified-for-measured-local-cohort",
+    "category": "Lighthouse Performance",
+    "caseCount": 8,
+    "runCount": 16,
+    "runsPerCase": {
+      "mobile": 1,
+      "desktop": 1
+    },
+    "mobileScoreRange": [
+      96,
+      98
+    ],
+    "desktopScoreRange": [
+      100,
+      100
+    ],
+    "repeatMedian": false,
+    "origin": "http://127.0.0.1:3157",
+    "lighthouseVersion": "13.6.0",
+    "browser": "HeadlessChrome/159.0.0.0",
+    "effectiveThemes": [
+      "night",
+      "atlas",
+      "workflow",
+      "catalog"
+    ],
+    "coverage": [
+      "EN home across four effective themes",
+      "TR home with default night theme",
+      "EN app, article and list details with default night theme"
+    ],
+    "measuredSourceFiles": 65,
+    "currentSourceHashesMatch": true,
+    "evidence": "artifacts/performance/cohort-0.6.0-verified.json",
+    "report": "docs/PERFORMANCE-AUDIT-REPORT.md",
+    "limits": [
+      "One mobile/desktop pair per case; not repeated-run median.",
+      "Not every locale, template and route combination was measured.",
+      "Local simulated laboratory conditions; not CrUX, production traffic or a guarantee for all hosts.",
+      "Some mobile LCP values exceed 2500ms; Performance95 does not prove all field Core Web Vitals are good."
+    ],
+    "cases": [
+      {
+        "label": "060-night-en",
+        "path": "/en",
+        "effectiveTheme": "night",
+        "recordedTemplate": null,
+        "mobileScore": 97,
+        "desktopScore": 100
+      },
+      {
+        "label": "060-night-tr",
+        "path": "/tr",
+        "effectiveTheme": "night",
+        "recordedTemplate": null,
+        "mobileScore": 96,
+        "desktopScore": 100
+      },
+      {
+        "label": "060-night-app",
+        "path": "/en/apps/notion",
+        "effectiveTheme": "night",
+        "recordedTemplate": null,
+        "mobileScore": 97,
+        "desktopScore": 100
+      },
+      {
+        "label": "060-night-article",
+        "path": "/en/blog/choose-a-notes-app-for-your-workflow",
+        "effectiveTheme": "night",
+        "recordedTemplate": null,
+        "mobileScore": 98,
+        "desktopScore": 100
+      },
+      {
+        "label": "060-night-list",
+        "path": "/en/lists/sourced-starter-picks-2026-11-09-15",
+        "effectiveTheme": "night",
+        "recordedTemplate": null,
+        "mobileScore": 97,
+        "desktopScore": 100
+      },
+      {
+        "label": "060-atlas-en",
+        "path": "/en",
+        "effectiveTheme": "atlas",
+        "recordedTemplate": "atlas",
+        "mobileScore": 97,
+        "desktopScore": 100
+      },
+      {
+        "label": "060-workflow-en",
+        "path": "/en",
+        "effectiveTheme": "workflow",
+        "recordedTemplate": "workflow",
+        "mobileScore": 97,
+        "desktopScore": 100
+      },
+      {
+        "label": "060-catalog-en",
+        "path": "/en",
+        "effectiveTheme": "catalog",
+        "recordedTemplate": "catalog",
+        "mobileScore": 97,
+        "desktopScore": 100
+      }
+    ]
+  },
+  "distribution": {
+    "status": "local-archives-and-fresh-installations-verified",
+    "archiveEvidence": "artifacts/verification/package-0.6.0.json",
+    "freshInstallationEvidence": "artifacts/verification/fresh-install-0.6.0.json",
+    "communityDocumentationEvidence": "artifacts/verification/community-docs-0.6.0.json",
+    "targets": [
+      "Docker PHP image",
+      "Apache flat hosting ZIP at root",
+      "Apache flat hosting ZIP under /catalog"
+    ],
+    "realCpanelVerified": false,
+    "githubRemoteConfigured": false,
+    "githubBranchProtectionsConfigured": false,
+    "scope": "Exact final archives verified locally with synthetic data; no public GitHub publication or production deployment."
+  },
+  "externalStates": {
+    "productionDeployment": false,
+    "publicGithubPublication": false,
+    "liveAIProviderVerified": false,
+    "googleSearchConsoleOAuthConfigured": false,
+    "realUserCruxVerified": false
+  },
+  "limits": [
+    "Search Console opportunities use imported CSV; live OAuth connection is not configured.",
+    "AI USD amounts are configured-price estimates, not provider invoices.",
+    "Additional language packs must pass UI, static-content and PHP server-message validation.",
+    "Upgrade file upload and full-file rollback remain hosting-operator steps.",
+    "Observed trends require dated source observations and do not represent global installation rankings."
+  ],
+  "verification": {
+    "javascript": {
+      "passed": 56,
+      "failed": 0,
+      "evidence": "artifacts/verification/unit-0.6.0.log"
+    },
+    "php": {
+      "passedScripts": 17,
+      "failedScripts": 0,
+      "lintFiles": 33,
+      "followup": "Focused checks after subsequent changes; not a claim that all 17 scripts reran after every change.",
+      "evidence": "artifacts/verification/php-0.6.0.json"
+    },
+    "e2e": {
+      "distinctPassingCases": 26,
+      "singleClean26CaseRun": false,
+      "initialRun": {
+        "passed": 23,
+        "failed": 2
+      },
+      "focusedRerun": {
+        "passed": 3,
+        "failed": 0
+      },
+      "strengthenedQueryRerun": {
+        "passed": 1,
+        "failed": 0
+      },
+      "evidence": "artifacts/verification/e2e-0.6.0.json"
+    },
+    "functionalAdmin": {
+      "retainedFiles": 18,
+      "index": "artifacts/growth-qa/README.md",
+      "manifest": "artifacts/growth-qa/artifact-manifest.json",
+      "scope": "Receipts distinguish real isolated PHP/MySQL checks from synthetic API/AI fixtures; no paid provider calls."
+    }
+  }
+}

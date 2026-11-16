@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "copper-desk",
+  "name": "Copper Desk",
+  "description": "A warm comparison-first desk with serif headlines, copper details and thoughtful app lists.",
+  "author": "Softwexa",
+  "template": "copper",
+  "layout": "topbar",
+  "density": "comfortable",
+  "tokens": {
+    "background": "#f6f2eb",
+    "surface": "#fffaf4",
+    "surfaceRaised": "#eadccf",
+    "foreground": "#342a24",
+    "muted": "#716055",
+    "accent": "#9c502a",
+    "accentContrast": "#ffffff",
+    "border": "#d8c4b4"
+  },
+  "presentation": {
+    "font": "serif",
+    "width": "wide",
+    "radius": "soft",
+    "hero": "standard",
+    "cardStyle": "outline"
+  },
+  "sections": [
+    "discovery",
+    "weekly",
+    "guides",
+    "trending",
+    "toolbox",
+    "workflows"
+  ]
+}

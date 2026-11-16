@@ -1,0 +1,90 @@
+[
+  {
+    "schemaVersion": 2,
+    "id": "wexa-focus-kit",
+    "name": "Focus kit",
+    "description": "A reviewed shortlist of note and task apps with live catalogue links.",
+    "version": "1.0.0",
+    "requires": "wexashelf-module-api:2",
+    "blocks": [
+      {
+        "id": "focus-apps",
+        "type": "curated-apps",
+        "appIds": [
+          "notion",
+          "obsidian",
+          "todoist",
+          "ticktick"
+        ],
+        "locales": {
+          "en": {
+            "title": "Build your focus kit",
+            "description": "Explore these note and task tools. Compare their recorded features before choosing."
+          },
+          "tr": {
+            "title": "Odak araçlarını seç",
+            "description": "Bu not ve görev araçlarını keşfet. Seçmeden önce kayıtlı özelliklerini karşılaştır."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schemaVersion": 2,
+    "id": "wexa-notes-comparison",
+    "name": "Notes comparison",
+    "description": "Compare recorded offline, sync and export facts for Notion and Obsidian.",
+    "version": "1.0.0",
+    "requires": "wexashelf-module-api:2",
+    "blocks": [
+      {
+        "id": "compare-notes",
+        "type": "comparison",
+        "appIds": [
+          "notion",
+          "obsidian"
+        ],
+        "factKeys": [
+          "offline",
+          "sync",
+          "export"
+        ],
+        "locales": {
+          "en": {
+            "title": "Notion and Obsidian: check the evidence",
+            "description": "Compare the facts recorded for each platform. Missing evidence is shown as unknown."
+          },
+          "tr": {
+            "title": "Notion ve Obsidian: kaynaklara bak",
+            "description": "Her platform için kayıtlı bilgileri karşılaştır. Eksik kanıtlar bilinmiyor olarak gösterilir."
+          }
+        }
+      }
+    ]
+  },
+  {
+    "schemaVersion": 2,
+    "id": "wexa-latest-reading",
+    "name": "Latest reading",
+    "description": "The latest available editorial articles, ordered by recorded publication date.",
+    "version": "1.0.0",
+    "requires": "wexashelf-module-api:2",
+    "blocks": [
+      {
+        "id": "latest-reading",
+        "type": "latest-articles",
+        "limit": 3,
+        "locales": {
+          "en": {
+            "title": "Fresh from the reading desk",
+            "description": "Published articles in this language, newest publication date first."
+          },
+          "tr": {
+            "title": "Okuma masasından yeniler",
+            "description": "Bu dilde yayımlanmış yazılar, yayın tarihine göre yeniden eskiye."
+          }
+        }
+      }
+    ]
+  }
+]

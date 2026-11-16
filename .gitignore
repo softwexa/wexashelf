@@ -1,0 +1,38 @@
+.seo-cache/
+node_modules/
+.next/
+.next-e2e/
+out/
+*.tsbuildinfo
+test-results/
+playwright-report/
+artifacts/
+backups/
+.local/
+# Local design exploration and archived prototype; themes ship from src/ and public/.
+/design/
+/v03/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+.DS_Store
+.env*
+!.env.example
+
+# Personal agent overrides and local tool state; shared AGENTS/CLAUDE stay public.
+AGENTS.override.md
+CLAUDE.local.md
+.claude/settings.local.json
+.claude/worktrees/
+.codex-log/
+.codex/
+
+# Private PHP installation state
+php/storage/*
+!php/storage/.htaccess
+!php/storage/index.php
+
+# Unused legacy landscape remains local; publisher icons ship with separate provenance.
+public/images/night-landscape.png
+php/public/icons/
+php/public/images/night-landscape.*

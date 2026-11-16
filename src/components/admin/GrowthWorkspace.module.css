@@ -1,0 +1,34 @@
+.workspace { display: grid; gap: 22px; }
+.heading, .actions, .row { display: flex; gap: 12px; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+.heading h2, .row h3 { margin: 0; }
+.note { color: var(--muted); font-size: 12px; line-height: 1.8; }
+.nav { display: flex; flex-wrap: wrap; gap: 8px; }
+.nav button[aria-pressed="true"] { color: var(--accent); border-color: var(--accent); }
+.layout { display: grid; grid-template-columns: minmax(220px, 280px) minmax(0, 1fr); gap: 22px; align-items: start; }
+.sidebar, .form { display: grid; gap: 18px; }
+.records { display: grid; gap: 8px; max-height: 650px; overflow: auto; }
+.records button { display: grid; gap: 8px; width: 100%; text-align: left; border: 1px solid var(--border); border-radius: 6px; padding: 12px; background: var(--background); color: var(--foreground); cursor: pointer; }
+.records button[aria-pressed="true"] { border-color: var(--accent); }
+.records small { color: var(--muted); }
+.fields { display: grid; gap: 20px; border: 0 !important; padding: 0 !important; }
+.grid { display: grid; gap: 17px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.full { grid-column: 1 / -1; }
+.repeater { display: grid; gap: 16px; }
+.item { display: grid; gap: 14px; padding: 16px; border: 1px solid var(--border); border-radius: 6px; background: var(--background); }
+.item h4 { margin: 0; font-size: 13px; }
+.actions { justify-content: flex-start; }
+.workspace button { min-height: 44px; }
+.warning { color: var(--warning, #e8c484); border: 1px solid #e8c48455; border-radius: 6px; padding: 14px 17px; font-size: 12px; line-height: 1.8; }
+.appChoices { display: grid; gap: 8px; max-height: 260px; overflow: auto; }
+.appChoices label { min-height: 36px; }
+.tableWrap { overflow: auto; }
+.table { width: 100%; border-collapse: collapse; text-align: left; font-size: 12px; }
+.table th, .table td { padding: 13px 12px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.65; }
+.table th { color: var(--muted); font-weight: 500; white-space: nowrap; }
+.table td { overflow-wrap: anywhere; min-width: 90px; max-width: 420px; }
+.table caption { text-align: left; margin: 10px 0; color: var(--muted); }
+.list { padding-left: 20px; font-size: 13px; line-height: 1.8; }
+.list li { margin-bottom: 12px; overflow-wrap: anywhere; }
+.source { font-size: 11px; color: var(--muted); }
+@media(max-width: 900px) { .layout { grid-template-columns: 1fr; } .records { max-height: 250px; } }
+@media(max-width: 600px) { .grid { grid-template-columns: 1fr; } .full { grid-column: auto; } .form { padding: 18px; } }

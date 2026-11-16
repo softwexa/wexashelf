@@ -1,0 +1,6 @@
+<?php
+declare(strict_types=1);
+if(PHP_SAPI!=='cli'){http_response_code(404);exit;}
+require dirname(__DIR__).'/app/bootstrap.php';
+use WexaShelf\{Config,Database,Repository,AccountSecurity};
+try{$options=getopt('',['password-file:','confirm-owner-recovery']);if(!isset($options['password-file'])||!array_key_exists('confirm-owner-recovery',$options))throw new RuntimeException('Usage: WEXA_STORAGE_PATH=/private/storage php account-recovery.php --password-file=/private/0600-file --confirm-owner-recovery');$path=$options['password-file'];if(!is_string($path)||!is_file($path)||is_link($path)||(fileperms($path)&0077)!==0||filesize($path)>258)throw new RuntimeException('Password file must be private0600, regular, and at most258 bytes.');$config=Config::load();if(!$config)throw new RuntimeException('Installed private configuration required.');$db=Database::connect($config);$repo=new Repository($db,$config);(new AccountSecurity($db,$repo,$config))->recoverLocal(rtrim((string)file_get_contents($path),"\r\n"));fwrite(STDOUT,"Owner password replaced; all sessions revoked and owner MFA reset. Securely remove the password file.\n");}catch(Throwable $e){fwrite(STDERR,$e instanceof RuntimeException?$e->getMessage()."\n":"Recovery failed. Inspect private host logs.\n");exit(1);}

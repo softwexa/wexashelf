@@ -1,0 +1,131 @@
+{
+  "version": "0.7.1",
+  "scope": "Local correction release; genuine icons, standalone administration and locale-specific URLs. External activation remains separate.",
+  "features": [
+    {
+      "id": "english-admin-and-source",
+      "status": "implemented-and-locally-verified",
+      "behavior": "English-default administration/installer and new original content; legacy Turkish source language and URLs preserved",
+      "evidence": [
+        "php/tests/installer-locales.php",
+        "php/tests/source-locales.php",
+        "php/tests/language-pack-runtime.php"
+      ]
+    },
+    {
+      "id": "large-backup-restore",
+      "status": "implemented-and-locally-verified",
+      "behavior": "Session-bound ordered uploads up to100MiB, checksum, preview/restore conflicts, CLI and memory safeguards",
+      "evidence": [
+        "php/tests/backup-transfer.php",
+        "artifacts/verification/operations-0.7.0-mysql84.json"
+      ]
+    },
+    {
+      "id": "runtime-language-packages",
+      "status": "implemented-and-locally-verified",
+      "behavior": "Complete private declarative import/preview/activate/disable/export without a host build; public UI subset and full administration exports",
+      "evidence": [
+        "php/tests/language-pack-runtime.php",
+        "artifacts/admin-070/public-runtime-pack-browser.json"
+      ]
+    },
+    {
+      "id": "bounded-catalog",
+      "status": "implemented-and-locally-verified",
+      "behavior": "SQL projection, server search/pagination, selected-record loading, sitemap chunks and full-catalog decision search",
+      "evidence": [
+        "php/tests/catalog-query.php",
+        "artifacts/verification/catalog-scale-0.7.0.json",
+        "artifacts/verification/catalog-browser-0.7.0.json"
+      ]
+    },
+    {
+      "id": "store-adapters-and-workers",
+      "status": "implemented-and-locally-verified",
+      "behavior": "Apple/GooglePlay/MicrosoftStore metadata, custom HTTPS JSON providers and manual observations; durable source jobs create review candidates only",
+      "evidence": [
+        "php/tests/source-providers.php",
+        "php/tests/source-freshness.php",
+        "artifacts/verification/source-readonly-070.json",
+        "artifacts/verification/source-worker-cli-070.json"
+      ]
+    },
+    {
+      "id": "owner-security",
+      "status": "implemented-and-locally-verified",
+      "behavior": "Password rotation, TOTP, one-use recovery codes, session revocation, rate limiting and local CLI recovery",
+      "evidence": [
+        "php/tests/security.php",
+        "artifacts/verification/operations-0.7.0-mysql84.json"
+      ]
+    },
+    {
+      "id": "durable-ai-jobs",
+      "status": "implemented-and-locally-verified",
+      "behavior": "Persisted jobs, leases, independent worker, explicit retry, uncertain-send protection, archive/delete retention and budget accounting",
+      "evidence": [
+        "php/tests/ai-queue.php",
+        "php/tests/ai-service.php"
+      ]
+    },
+    {
+      "id": "local-release-readiness",
+      "status": "implemented-and-locally-verified",
+      "behavior": "Publisher icons restored; original project landscape remains MIT. Docker/flatZIP and contributor/operation guides.",
+      "evidence": [
+        "artifacts/verification/release-0.7.0-hosting.json",
+        "artifacts/verification/release-0.7.0-final-runtime.json",
+        "scripts/test-release-package.mjs"
+      ]
+    }
+  ],
+  "evidencePolicy": "artifacts paths identify ignored local evidence, not files promised in public archives; source tests, mocked providers, public read-only probes, local hosting and paid/live operations remain distinct",
+  "externalPending": [
+    "Maintainer-selected GitHub upstream/publication",
+    "Actual target cPanel installation and cron activation",
+    "Explicitly authorized paid AI call and measured cost",
+    "Production field performance/search evidence"
+  ],
+  "performance": {
+    "status": "local-lab-target-met",
+    "cases": 8,
+    "runs": 16,
+    "mobileRange": [
+      95,
+      97
+    ],
+    "desktop": 100,
+    "allMeasuredSourceHashesMatch": true,
+    "report": "docs/PERFORMANCE-AUDIT-REPORT.md",
+    "scope": "Small synthetic local catalog; no field or universal-host guarantee"
+  },
+  "corrections": [
+    {
+      "id": "genuine-app-icons",
+      "behavior": "Ten genuine publisher icon sources, optimized local WebP/SVG; publisher rights separate from project MIT",
+      "evidence": [
+        "php/resources/artwork-manifest.json",
+        "artifacts/verification/fresh-0.7.1-hosting.json"
+      ]
+    },
+    {
+      "id": "standalone-admin",
+      "behavior": "Independent /admin document and bootstrap; private no-store/noindex; legacy /yonetim redirect; English canonical /install",
+      "evidence": [
+        "php/tests/admin-site.php",
+        "php/tests/admin-http.mjs",
+        "artifacts/verification/071/admin-http.json"
+      ]
+    },
+    {
+      "id": "localized-slugs",
+      "behavior": "Explicit EN/TR static and tag slugs, safe legacy301s, reciprocal eligible hreflang and selfcanonical; stable IDs and legacy language packs preserved",
+      "evidence": [
+        "php/tests/localized-slugs.php",
+        "artifacts/verification/localized-urls-0.7.1.json"
+      ]
+    }
+  ],
+  "inheritedFeatureEvidence": "The eight feature entries retain their explicitly dated0.7.0 evidence; they are not all rerun by the0.7.1 correction."
+}

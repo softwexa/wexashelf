@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "kobalt-atlas",
+  "name": "Kobalt Atlas",
+  "description": "Beyaz yüzeyler, kobalt vurgu ve kategori odaklı editoryal keşif.",
+  "template": "atlas",
+  "layout": "topbar",
+  "density": "comfortable",
+  "tokens": {
+    "background": "#f5f7fc",
+    "surface": "#ffffff",
+    "surfaceRaised": "#eaf0fc",
+    "foreground": "#172746",
+    "muted": "#53647d",
+    "accent": "#234dcc",
+    "accentContrast": "#ffffff",
+    "border": "#d4ddeb"
+  },
+  "sections": [
+    "discovery",
+    "weekly",
+    "guides",
+    "trending",
+    "toolbox",
+    "workflows"
+  ]
+}

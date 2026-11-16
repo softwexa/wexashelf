@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "fieldnotes",
+  "name": "Fieldnotes",
+  "description": "An olive-and-oat editorial index, a featured app and a carefully ruled reading layout.",
+  "author": "Softwexa",
+  "template": "fieldnotes",
+  "layout": "topbar",
+  "density": "comfortable",
+  "tokens": {
+    "background": "#f5f0e6",
+    "surface": "#faf7ef",
+    "surfaceRaised": "#e8e4d6",
+    "foreground": "#344338",
+    "muted": "#5d6359",
+    "accent": "#9b482d",
+    "accentContrast": "#ffffff",
+    "border": "#c5c8b7"
+  },
+  "presentation": {
+    "font": "serif",
+    "width": "wide",
+    "radius": "square",
+    "hero": "standard",
+    "cardStyle": "flat"
+  },
+  "sections": [
+    "discovery",
+    "weekly",
+    "toolbox",
+    "guides",
+    "trending",
+    "workflows"
+  ]
+}

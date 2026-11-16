@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 2,
+  "id": "wexa-notes-comparison",
+  "name": "Notes comparison",
+  "description": "Compare recorded offline, sync and export facts for Notion and Obsidian.",
+  "version": "1.0.0",
+  "requires": "wexashelf-module-api:2",
+  "blocks": [
+    {
+      "id": "compare-notes",
+      "type": "comparison",
+      "appIds": [
+        "notion",
+        "obsidian"
+      ],
+      "factKeys": [
+        "offline",
+        "sync",
+        "export"
+      ],
+      "locales": {
+        "en": {
+          "title": "Notion and Obsidian: check the evidence",
+          "description": "Compare the facts recorded for each platform. Missing evidence is shown as unknown."
+        },
+        "tr": {
+          "title": "Notion ve Obsidian: kaynaklara bak",
+          "description": "Her platform için kayıtlı bilgileri karşılaştır. Eksik kanıtlar bilinmiyor olarak gösterilir."
+        }
+      }
+    }
+  ]
+}

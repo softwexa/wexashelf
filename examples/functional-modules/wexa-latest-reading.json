@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 2,
+  "id": "wexa-latest-reading",
+  "name": "Latest reading",
+  "description": "The latest available editorial articles, ordered by recorded publication date.",
+  "version": "1.0.0",
+  "requires": "wexashelf-module-api:2",
+  "blocks": [
+    {
+      "id": "latest-reading",
+      "type": "latest-articles",
+      "limit": 3,
+      "locales": {
+        "en": {
+          "title": "Fresh from the reading desk",
+          "description": "Published articles in this language, newest publication date first."
+        },
+        "tr": {
+          "title": "Okuma masasından yeniler",
+          "description": "Bu dilde yayımlanmış yazılar, yayın tarihine göre yeniden eskiye."
+        }
+      }
+    }
+  ]
+}

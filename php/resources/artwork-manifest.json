@@ -1,0 +1,82 @@
+{
+  "version": 2,
+  "provenance": "Genuine publisher app icons from the recorded acquisition sources; local optimized derivatives retain third-party rights. Original project background is separately MIT licensed.",
+  "icons": {
+    "/icons/notion.jpg": {
+      "source": "public/icons/notion.jpg",
+      "destination": "/assets/icons/notion.webp",
+      "label": "Notion",
+      "sourceUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/4a/fa/7a/4afa7a74-b27e-17db-4293-50450fc8423c/AppIconProd-0-0-1x_U007epad-0-0-0-1-0-0-85-220.png/512x512bb.jpg",
+      "rights": "Third-party publisher artwork; not covered by the WexaShelf MIT license. Source attribution is not a blanket redistribution license."
+    },
+    "/icons/obsidian.jpg": {
+      "source": "public/icons/obsidian.jpg",
+      "destination": "/assets/icons/obsidian.webp",
+      "label": "Obsidian",
+      "sourceUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/9f/6e/41/9f6e419e-d85c-d3b6-550b-40c51bf9ff26/AppIcon-0-0-1x_U007epad-0-1-85-220.png/512x512bb.jpg",
+      "rights": "Third-party publisher artwork; not covered by the WexaShelf MIT license. Source attribution is not a blanket redistribution license."
+    },
+    "/icons/todoist.jpg": {
+      "source": "public/icons/todoist.jpg",
+      "destination": "/assets/icons/todoist.webp",
+      "label": "Todoist",
+      "sourceUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/1d/eb/a6/1deba659-d476-a9cb-ffe0-e9d91d790fd2/AppIcon-0-0-1x_U007epad-0-1-85-220.png/512x512bb.jpg",
+      "rights": "Third-party publisher artwork; not covered by the WexaShelf MIT license. Source attribution is not a blanket redistribution license."
+    },
+    "/icons/ticktick.jpg": {
+      "source": "public/icons/ticktick.jpg",
+      "destination": "/assets/icons/ticktick.webp",
+      "label": "TickTick",
+      "sourceUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/de/5d/64/de5d6426-bf7f-84af-389e-a0280e6359f1/AppIcon-0-0-1x_U007epad-0-0-0-1-0-0-85-220.png/512x512bb.jpg",
+      "rights": "Third-party publisher artwork; not covered by the WexaShelf MIT license. Source attribution is not a blanket redistribution license."
+    },
+    "/icons/vlc.jpg": {
+      "source": "public/icons/vlc.jpg",
+      "destination": "/assets/icons/vlc.webp",
+      "label": "VLC",
+      "sourceUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/8a/bc/8f/8abc8f02-7df8-3fd3-13c1-ebd03a61f9e2/AppIcon-0-0-1x_U007emarketing-0-0-0-8-0-0-85-220.png/512x512bb.jpg",
+      "rights": "Third-party publisher artwork; not covered by the WexaShelf MIT license. Source attribution is not a blanket redistribution license."
+    },
+    "/icons/firefox.jpg": {
+      "source": "public/icons/firefox.jpg",
+      "destination": "/assets/icons/firefox.webp",
+      "label": "Firefox",
+      "sourceUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/1c/9b/dc/1c9bdcb1-16c7-400d-7a6e-4942c13c8d4a/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg",
+      "rights": "Third-party publisher artwork; not covered by the WexaShelf MIT license. Source attribution is not a blanket redistribution license."
+    },
+    "/icons/acrobat.jpg": {
+      "source": "public/icons/acrobat.jpg",
+      "destination": "/assets/icons/acrobat.webp",
+      "label": "Adobe Acrobat",
+      "sourceUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/2e/fe/04/2efe04a3-7ebc-7716-cc31-14e996e11291/ReleaseAppIcon-0-0-1x_U007emarketing-0-8-0-sRGB-85-220.png/512x512bb.jpg",
+      "rights": "Third-party publisher artwork; not covered by the WexaShelf MIT license. Source attribution is not a blanket redistribution license."
+    },
+    "/icons/xodo.jpg": {
+      "source": "public/icons/xodo.jpg",
+      "destination": "/assets/icons/xodo.webp",
+      "label": "Xodo",
+      "sourceUrl": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/29/9e/41/299e41c6-de2e-47f3-31ae-c2948cd39871/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg",
+      "rights": "Third-party publisher artwork; not covered by the WexaShelf MIT license. Source attribution is not a blanket redistribution license."
+    },
+    "/icons/powertoys.png": {
+      "source": "public/icons/powertoys.png",
+      "destination": "/assets/icons/powertoys.webp",
+      "label": "PowerToys",
+      "sourceUrl": "https://raw.githubusercontent.com/microsoft/PowerToys/main/doc/images/icons/PowerToys%20icon/PNG/PowerToysAppList.targetsize-256.png",
+      "rights": "Third-party publisher artwork; not covered by the WexaShelf MIT license. Source attribution is not a blanket redistribution license."
+    },
+    "/icons/antennapod.svg": {
+      "source": "public/icons/antennapod.svg",
+      "destination": "/assets/icons/antennapod.svg",
+      "label": "AntennaPod",
+      "sourceUrl": "https://antennapod.org/assets/branding/logos/logo-icon.svg",
+      "rights": "Third-party publisher artwork; not covered by the WexaShelf MIT license. Source attribution is not a blanket redistribution license."
+    }
+  },
+  "background": {
+    "source": "public/artwork/night-mountains.svg",
+    "destination": "/assets/artwork/night-mountains.svg",
+    "sourceLicense": "MIT",
+    "provenance": "Original geometric landscape authored for WexaShelf."
+  }
+}

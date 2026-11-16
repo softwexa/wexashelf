@@ -1,0 +1,18 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__.'/../app/bootstrap.php';
+use WexaShelf\{Database,Repository,Capabilities,ApiException};
+if($argc!==2)throw new RuntimeException('Usage: php php/tests/capabilities.php QA_CONFIG_JSON');$config=json_decode(file_get_contents($argv[1]),true,512,JSON_THROW_ON_ERROR);if(!isset($config['database']))$config=['database'=>$config];$config['database']['name']='wexashelf_repo_test';$db=Database::connect($config);Database::migrate($db);$repo=new Repository($db,$config);$caps=new Capabilities($db,$repo);
+function capAssert(bool $ok,string $message):void{if(!$ok)throw new RuntimeException($message);}
+function capReject(callable $fn,int $status):void{try{$fn();}catch(ApiException $e){capAssert($e->status===$status,'capability status');return;}throw new RuntimeException('Invalid capability accepted');}
+$db->beginTransaction();try{
+ $repo->seed(json_decode(file_get_contents(__DIR__.'/../resources/seed.json'),true,512,JSON_THROW_ON_ERROR));$app=current(array_filter($repo->allRecords(),fn($r)=>$r['kind']==='app'&&count($r['data']['plans'])>0));$v=Capabilities::empty($app['id'],$app['revision']);$proof=['sourceUrl'=>$app['data']['sourceUrl'],'checkedAt'=>gmdate('Y-m-d')];$v['quotas']=[array_merge(['planId'=>$app['data']['plans'][0]['id'],'metric'=>'ocr-pages','limit'=>null,'unit'=>'pages','period'=>'month','scope'=>'account','platform'=>$app['data']['platforms'][0]],$proof)];$v['formats']=[array_merge(['extension'=>'pdf','modes'=>['open','export'],'platform'=>$app['data']['platforms'][0]],$proof)];$v['privacy']=[array_merge(['key'=>'tracking','state'=>'unknown','notes'=>['en'=>'No verified observation recorded.']],$proof)];
+ $saved=$caps->save($v);capAssert($saved['quotas'][0]['limit']===null,'unknown quota retained');capAssert(count($saved['changes'])===1,'source-backed change captured');capAssert(!$repo->getPublicSnapshot()['capabilities'][$app['id']]['stale'],'fresh source snapshot');
+ capReject(fn()=>$caps->save($v),409);$bad=$saved;$bad['quotas'][0]['limit']=-1;capReject(fn()=>$caps->save($bad),400);$bad=$saved;$bad['quotas'][0]['unit']='mb';capReject(fn()=>$caps->save($bad),400);$bad=$saved;$bad['quotas'][0]['planId']='invented-plan';capReject(fn()=>$caps->save($bad),400);
+ $proposal=$caps->propose(['appId'=>$app['id'],'summary'=>'The source may document a changed quota.','sourceUrl'=>$app['data']['sourceUrl'],'website'=>'']);capAssert($proposal['status']==='pending','developer proposal pending');$caps->reviewProposal(['id'=>$proposal['id'],'status'=>'reviewed']);capAssert($caps->all()[$app['id']]['revision']===$saved['revision'],'proposal review never overwrites facts');
+ $app['data']['description'].=' Updated source text.';$app=$repo->saveRecord($app);capAssert($repo->getPublicSnapshot()['capabilities'][$app['id']]['stale'],'source change invalidates observations');capReject(fn()=>$caps->save($saved),409);
+ $backup=$repo->exportBackup();$repo->restoreBackup($backup);capAssert(count($caps->all())===1&&count($caps->stateData()['proposals'])===1,'facts and proposals survive backup');
+ $app['status']='archived';$repo->saveRecord($app);capAssert(!isset($repo->getPublicSnapshot()['capabilities'][$app['id']]),'hidden app facts not public');
+ $duplicate=$caps->backup();if($duplicate['proposals']){$duplicate['proposals'][]=$duplicate['proposals'][0];try{Capabilities::validateBackup($duplicate);throw new RuntimeException('Duplicate proposal accepted');}catch(ApiException){}}
+ echo "PASS: evidence and quota validation, source freshness, pending proposals, version conflicts, visibility and backup\n";
+}finally{if($db->inTransaction())$db->rollBack();}

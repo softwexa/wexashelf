@@ -1,0 +1,116 @@
+[
+  {
+    "text": "A plain paragraph.",
+    "tokens": [
+      {
+        "type": "text",
+        "text": "A plain paragraph."
+      }
+    ]
+  },
+  {
+    "text": "Önce [app id=\"notion\"] sonra [image id=\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"]",
+    "tokens": [
+      {
+        "type": "text",
+        "text": "Önce "
+      },
+      {
+        "type": "app",
+        "id": "notion"
+      },
+      {
+        "type": "text",
+        "text": " sonra "
+      },
+      {
+        "type": "image",
+        "id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    ]
+  },
+  {
+    "text": "[app id=\"notion\"][app id=\"obsidian\"]",
+    "tokens": [
+      {
+        "type": "app",
+        "id": "notion"
+      },
+      {
+        "type": "app",
+        "id": "obsidian"
+      }
+    ]
+  },
+  {
+    "text": "",
+    "tokens": []
+  },
+  {
+    "text": "[app id=\"../admin\"]",
+    "tokens": [
+      {
+        "type": "text",
+        "text": "[app id=\"../admin\"]"
+      }
+    ]
+  },
+  {
+    "text": "[app id=\"NOTION\"]",
+    "tokens": [
+      {
+        "type": "text",
+        "text": "[app id=\"NOTION\"]"
+      }
+    ]
+  },
+  {
+    "text": "[image id=\"notion\"]",
+    "tokens": [
+      {
+        "type": "text",
+        "text": "[image id=\"notion\"]"
+      }
+    ]
+  },
+  {
+    "text": "[app id=\"notion\" onclick=\"bad\"]",
+    "tokens": [
+      {
+        "type": "text",
+        "text": "[app id=\"notion\" onclick=\"bad\"]"
+      }
+    ]
+  },
+  {
+    "text": "[app id=\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"]",
+    "tokens": [
+      {
+        "type": "text",
+        "text": "[app id=\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"]"
+      }
+    ]
+  },
+  {
+    "text": "[iframe src=\"https://example.org\"]",
+    "tokens": [
+      {
+        "type": "text",
+        "text": "[iframe src=\"https://example.org\"]"
+      }
+    ]
+  },
+  {
+    "text": "[app id=\"notion\"]<script>bad</script>",
+    "tokens": [
+      {
+        "type": "app",
+        "id": "notion"
+      },
+      {
+        "type": "text",
+        "text": "<script>bad</script>"
+      }
+    ]
+  }
+]

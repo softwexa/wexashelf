@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "is-akisi-haritasi",
+  "name": "İş Akışı Haritası",
+  "description": "Adaçayı yüzeylerde, yapılacak işten uygulamaya uzanan düzenli akış.",
+  "template": "workflow",
+  "layout": "sidebar",
+  "density": "comfortable",
+  "tokens": {
+    "background": "#eef2e9",
+    "surface": "#fafbf7",
+    "surfaceRaised": "#e0e8d9",
+    "foreground": "#203c31",
+    "muted": "#536b5c",
+    "accent": "#295d45",
+    "accentContrast": "#ffffff",
+    "border": "#ccd8c5"
+  },
+  "sections": [
+    "workflows",
+    "toolbox",
+    "discovery",
+    "guides",
+    "weekly",
+    "trending"
+  ]
+}

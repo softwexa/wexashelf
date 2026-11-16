@@ -1,0 +1,5 @@
+# Keep source review and language statistics focused on maintained code.
+php/public/assets/** linguist-generated=true
+php/resources/*.json linguist-generated=true
+php/resources/licenses/** linguist-vendored=true
+public/icons/** linguist-vendored=true

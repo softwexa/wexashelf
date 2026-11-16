@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "prism",
+  "name": "Prism",
+  "description": "A vibrant coral-and-blue discovery mosaic with collections, app cards and journal features.",
+  "author": "Softwexa",
+  "template": "prism",
+  "layout": "topbar",
+  "density": "comfortable",
+  "tokens": {
+    "background": "#fffdfb",
+    "surface": "#ffffff",
+    "surfaceRaised": "#f9d9cc",
+    "foreground": "#202249",
+    "muted": "#5d607b",
+    "accent": "#3644c6",
+    "accentContrast": "#ffffff",
+    "border": "#dedde9"
+  },
+  "presentation": {
+    "font": "sans",
+    "width": "wide",
+    "radius": "round",
+    "hero": "standard",
+    "cardStyle": "outline"
+  },
+  "sections": [
+    "discovery",
+    "trending",
+    "guides",
+    "weekly",
+    "toolbox",
+    "workflows"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "ember",
+  "name": "Ember",
+  "description": "A warm charcoal showcase with bold type, app shelves and an editorial comparison band.",
+  "author": "Softwexa",
+  "template": "ember",
+  "layout": "topbar",
+  "density": "comfortable",
+  "tokens": {
+    "background": "#181b1c",
+    "surface": "#232829",
+    "surfaceRaised": "#34302b",
+    "foreground": "#f3e8d8",
+    "muted": "#c5b9aa",
+    "accent": "#ff864c",
+    "accentContrast": "#211711",
+    "border": "#4c4842"
+  },
+  "presentation": {
+    "font": "display",
+    "width": "wide",
+    "radius": "soft",
+    "hero": "standard",
+    "cardStyle": "flat"
+  },
+  "sections": [
+    "discovery",
+    "trending",
+    "toolbox",
+    "guides",
+    "weekly",
+    "workflows"
+  ]
+}

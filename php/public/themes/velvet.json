@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "velvet",
+  "name": "Velvet",
+  "description": "A cherry-and-champagne editorial catalog with serif headings and alternating light reading sections.",
+  "author": "Softwexa",
+  "template": "velvet",
+  "layout": "topbar",
+  "density": "comfortable",
+  "tokens": {
+    "background": "#2d1827",
+    "surface": "#402334",
+    "surfaceRaised": "#f6e8d6",
+    "foreground": "#faede1",
+    "muted": "#d0b7c0",
+    "accent": "#e3b0bb",
+    "accentContrast": "#3d1e2d",
+    "border": "#705162"
+  },
+  "presentation": {
+    "font": "serif",
+    "width": "wide",
+    "radius": "soft",
+    "hero": "spacious",
+    "cardStyle": "flat"
+  },
+  "sections": [
+    "discovery",
+    "toolbox",
+    "weekly",
+    "guides",
+    "trending",
+    "workflows"
+  ]
+}

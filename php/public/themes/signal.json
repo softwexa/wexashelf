@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "signal",
+  "name": "Signal",
+  "description": "A decisive geometric catalog with lime panels, black rules and a three-column discovery grid.",
+  "author": "Softwexa",
+  "template": "signal",
+  "layout": "topbar",
+  "density": "comfortable",
+  "tokens": {
+    "background": "#f4f4ef",
+    "surface": "#ffffff",
+    "surfaceRaised": "#d7f844",
+    "foreground": "#111716",
+    "muted": "#465046",
+    "accent": "#4f6508",
+    "accentContrast": "#ffffff",
+    "border": "#939c8c"
+  },
+  "presentation": {
+    "font": "display",
+    "width": "wide",
+    "radius": "square",
+    "hero": "standard",
+    "cardStyle": "outline"
+  },
+  "sections": [
+    "discovery",
+    "trending",
+    "guides",
+    "weekly",
+    "toolbox",
+    "workflows"
+  ]
+}

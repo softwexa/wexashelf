@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "compact-directory",
+  "name": "Compact Directory",
+  "description": "A compact app table with platforms, recorded pricing and source dates.",
+  "template": "directory",
+  "layout": "sidebar",
+  "density": "compact",
+  "tokens": {
+    "background": "#edf2f2",
+    "surface": "#ffffff",
+    "surfaceRaised": "#dfe9e8",
+    "foreground": "#173b3b",
+    "muted": "#4d6666",
+    "accent": "#17635c",
+    "accentContrast": "#ffffff",
+    "border": "#bfd1ce"
+  },
+  "sections": [
+    "discovery",
+    "toolbox",
+    "weekly",
+    "trending",
+    "guides",
+    "workflows"
+  ]
+}

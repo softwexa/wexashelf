@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "lilac-studio",
+  "name": "Lilac Studio",
+  "description": "A welcoming lavender workspace with a side navigation, app gallery and editorial shelf.",
+  "author": "Softwexa",
+  "template": "lilac",
+  "layout": "sidebar",
+  "density": "comfortable",
+  "tokens": {
+    "background": "#f7f4fc",
+    "surface": "#fffdff",
+    "surfaceRaised": "#eee5f8",
+    "foreground": "#37274e",
+    "muted": "#6e607b",
+    "accent": "#65488e",
+    "accentContrast": "#ffffff",
+    "border": "#d9cbe7"
+  },
+  "presentation": {
+    "font": "sans",
+    "width": "wide",
+    "radius": "round",
+    "hero": "standard",
+    "cardStyle": "elevated"
+  },
+  "sections": [
+    "discovery",
+    "weekly",
+    "guides",
+    "trending",
+    "toolbox",
+    "workflows"
+  ]
+}

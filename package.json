@@ -1,0 +1,46 @@
+{
+  "name": "wexashelf",
+  "version": "0.8.0",
+  "private": true,
+  "scripts": {
+    "dev": "php -S 127.0.0.1:3141 -t php/public php/public/router.php",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1 --port 3140",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts src/lib/*.test.ts",
+    "test:e2e": "playwright test",
+    "admin:init": "tsx scripts/admin-init.ts",
+    "check:runtime": "node scripts/check-runtime.mjs",
+    "build:php": "node scripts/build-php.mjs",
+    "package:source": "node scripts/package-source.mjs",
+    "package:php": "node scripts/package-php.mjs",
+    "dev:php": "php -S 127.0.0.1:3141 -t php/public php/public/router.php",
+    "dev:legacy": "next dev --hostname 127.0.0.1 --port 3140"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-sans": "5.3.0",
+    "lucide-react": "1.73.0",
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "web-vitals": "6.2.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.1",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "esbuild": "0.28.2",
+    "sharp": "0.35.5",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "author": {
+    "name": "Softwexa",
+    "url": "https://softwexa.com"
+  },
+  "license": "MIT"
+}
