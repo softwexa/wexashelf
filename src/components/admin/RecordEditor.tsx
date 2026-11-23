@@ -3,6 +3,7 @@ import {useI18n} from "@/lib/i18n";
 import {localeRegistry} from "@/lib/i18n-registry";
 import { useEffect, useId, useRef, useState } from "react";
 import ArticleContentEditor from "./ArticleContentEditor";
+import {insertArticleReference} from "@/lib/article-insertion";
 import EditorAppPicker from "./EditorAppPicker";
 import AppIconUpload from "./AppIconUpload";
 import AppScreenshotEditor from "./AppScreenshotEditor";
@@ -117,6 +118,8 @@ function TextField({
   type = "text",
   readOnly = false,
   hint,
+  onTextSelection,
+  onTextBlur,
 }: {
   label: string;
   value: string;
@@ -126,6 +129,8 @@ function TextField({
   type?: string;
   readOnly?: boolean;
   hint?: string;
+  onTextSelection?: (field: HTMLTextAreaElement) => void;
+  onTextBlur?: (field: HTMLTextAreaElement) => void;
 }) {
  const {t,intlLocale}=useI18n();
 
@@ -143,6 +148,9 @@ function TextField({
           value={value}
           required={required}
           onChange={(event) => onChange(event.target.value)}
+          onSelect={event => onTextSelection?.(event.currentTarget)}
+          onFocus={event => onTextSelection?.(event.currentTarget)}
+          onBlur={event => onTextBlur?.(event.currentTarget)}
           rows={4}
         />
       ) : (
@@ -347,6 +355,42 @@ export default function RecordEditor({
     heading: string;
     paragraphs: string[];
   }[];
+  // Retain the exact section object and text; a replacement/removal invalidates the target.
+  const [articleSection, setArticleSection] = useState(0);
+  const articleTarget = useRef<{section: typeof sections[number]; index: number; field: HTMLTextAreaElement; text: string; start: number; end: number; record: ManagedRecord | null} | null>(null);
+  function captureArticleSelection(index: number, field: HTMLTextAreaElement) {
+    setArticleSection(index);
+    articleTarget.current = {section: sections[index], index, field, text: field.value, start: field.selectionStart, end: field.selectionEnd, record};
+  }
+  function validArticleTarget() {
+    const target = articleTarget.current;
+    return target && target.record === record && target.field.isConnected && sections[target.index] === target.section && target.text === target.section.paragraphs.join("\n\n") ? target : null;
+  }
+  function insertAppReference(code: string) {
+    const target = validArticleTarget();
+    if (!target) { articleTarget.current = null; return false; }
+    const inserted = insertArticleReference(target.text, target.start, target.end, code);
+    const nextSection = {...target.section, paragraphs: inserted.text.split("\n\n")};
+    update("sections", sections.map((item, index) => index === target.index ? nextSection : item));
+    const nextTarget = {...target, section: nextSection, text: inserted.text, start: inserted.caret, end: inserted.caret};
+    articleTarget.current = nextTarget;
+    // Applying closes the picker synchronously and focuses its trigger before this frame.
+    requestAnimationFrame(() => {
+      if (
+        articleTarget.current !== nextTarget ||
+        nextTarget.record !== latestArticleRecord.current ||
+        !nextTarget.field.isConnected ||
+        latestArticleSections.current[nextTarget.index] !== nextTarget.section ||
+        nextTarget.field.value !== nextTarget.text
+      ) return;
+      nextTarget.field.focus();
+      nextTarget.field.setSelectionRange(nextTarget.start, nextTarget.end);
+      articleTarget.current = nextTarget;
+    });
+    return true;
+  }
+  const latestArticleSections = useRef(sections); latestArticleSections.current = sections;
+  const latestArticleRecord = useRef(record); latestArticleRecord.current = record;
   const entries = (data.entries || []) as { appId: string; reason: string }[];
   return (
     <form className="admin-editor" onSubmit={submit}><label className="admin-field"><span>{t("Source language")}</span><select value={sourceLocale} disabled={!!record||busy} onChange={e=>{setSourceLocale(e.target.value);setDirty(true);}}>{Object.values(localeRegistry).map(pack=><option key={pack.locale} value={pack.locale}>{pack.label}</option>)}</select><small>{t("Source language is fixed after creation. Legacy records without metadata use Turkish.")}</small></label>
@@ -561,6 +605,12 @@ export default function RecordEditor({
                       label={t("Bölüm {p0} paragrafları",{p0:index + 1})}
                       multiline
                       value={section.paragraphs.join("\n\n")}
+                      onTextSelection={field => captureArticleSelection(index, field)}
+                      onTextBlur={field => {
+                        // A section choice may invalidate this field before it loses focus.
+                        // Blur refreshes a live target but must never recreate a discarded one.
+                        if (articleTarget.current?.field === field) captureArticleSelection(index, field);
+                      }}
                       onChange={(value) =>
                         update(
                           "sections",
@@ -596,7 +646,7 @@ export default function RecordEditor({
                   }
                 >{t("Bölüm ekle")}</button>
               </div>
-              <ArticleContentEditor sections={sections} images={(data.images||[]) as InlineArticleImage[]} cover={data.cover as {assetId:string;alt:string;caption:string;aiGenerated?:boolean}|undefined} sourceLocale={sourceLocale} disabled={busy} onBusy={setMediaBusy} onDraftTouched={()=>setDirty(true)} onChange={patch=>{setData(previous=>({...previous,...patch}));setDirty(true);}}/>
+              <ArticleContentEditor onInsertApp={insertAppReference} selectedSection={articleSection} onSectionChange={index=>{setArticleSection(index);articleTarget.current=null;}} sections={sections} images={(data.images||[]) as InlineArticleImage[]} cover={data.cover as {assetId:string;alt:string;caption:string;aiGenerated?:boolean}|undefined} sourceLocale={sourceLocale} disabled={busy} onBusy={setMediaBusy} onDraftTouched={()=>setDirty(true)} onChange={patch=>{setData(previous=>({...previous,...patch}));setDirty(true);}}/>
             </>
           )}
           {kind === "list" && (

@@ -8,12 +8,12 @@ import type {AppRecord} from '@/lib/domain';
 import EditorAppPicker from './EditorAppPicker';
 import {ArticleContent,type ArticleSection,type InlineArticleImage} from '../discovery/ArticleContent';
 type Cover={assetId:string;alt:string;caption:string;aiGenerated?:boolean};
-export default function ArticleContentEditor({sections,images,cover,sourceLocale,disabled,onChange,onBusy,onDraftTouched}:{sections:ArticleSection[];images:InlineArticleImage[];cover?:Cover;sourceLocale:string;disabled:boolean;onChange:(patch:{sections:ArticleSection[];images:InlineArticleImage[]})=>void;onBusy:(value:boolean)=>void;onDraftTouched:()=>void}){
- const {t}=useI18n();const [section,setSection]=useState(0),[apps,setApps]=useState<AppRecord[]>([]),[alt,setAlt]=useState(''),[caption,setCaption]=useState(''),[file,setFile]=useState<File|null>(null),[working,setWorking]=useState(false),[error,setError]=useState('');const pending=useRef<AbortController|null>(null);
+export default function ArticleContentEditor({sections,images,cover,sourceLocale,disabled,onChange,onBusy,onDraftTouched,onInsertApp,onSectionChange,selectedSection}:{onInsertApp:(code:string)=>boolean;selectedSection:number;onSectionChange:(index:number)=>void;sections:ArticleSection[];images:InlineArticleImage[];cover?:Cover;sourceLocale:string;disabled:boolean;onChange:(patch:{sections:ArticleSection[];images:InlineArticleImage[]})=>void;onBusy:(value:boolean)=>void;onDraftTouched:()=>void}){
+ const {t}=useI18n();const [apps,setApps]=useState<AppRecord[]>([]),[alt,setAlt]=useState(''),[caption,setCaption]=useState(''),[file,setFile]=useState<File|null>(null),[working,setWorking]=useState(false),[error,setError]=useState('');const pending=useRef<AbortController|null>(null);
  const ids=[...new Set(sections.flatMap(s=>s.paragraphs.flatMap(p=>parseArticleParagraph(p).flatMap(token=>token.type==='app'?[token.id]:[]))))].slice(0,100).join(',');
  useEffect(()=>{const abort=new AbortController();if(!ids){setApps([]);return;}fetchCatalog(new URLSearchParams({locale:sourceLocale,ids}),abort.signal).then(page=>setApps(page.items)).catch(e=>{if(!abort.signal.aborted)setError(e.message)});return()=>abort.abort();},[ids,sourceLocale]);
  useEffect(()=>()=>pending.current?.abort(),[]);
- function insert(code:string,nextImages=images){if(!sections.length)return;const target=Math.min(section,sections.length-1);onChange({images:nextImages,sections:sections.map((item,index)=>index===target?{...item,paragraphs:[...item.paragraphs,code]}:item)});}
+ function insert(code:string,nextImages=images){if(!sections.length)return;const target=Math.min(selectedSection,sections.length-1);onChange({images:nextImages,sections:sections.map((item,index)=>index===target?{...item,paragraphs:[...item.paragraphs,code]}:item)});}
  async function run(action:(signal:AbortSignal)=>Promise<void>){if(working||disabled)return;const abort=new AbortController();pending.current=abort;setWorking(true);onBusy(true);setError('');try{await action(abort.signal);}catch(e){if(!abort.signal.aborted)setError(e instanceof Error?e.message:t('The request could not be completed.'));}finally{if(!abort.signal.aborted){setWorking(false);onBusy(false);}pending.current=null;}}
  async function upload(signal:AbortSignal){
   if(!file||!alt.trim()||!caption.trim())throw Error(t('Choose an image and enter its alternative text and caption.'));
@@ -26,9 +26,21 @@ export default function ArticleContentEditor({sections,images,cover,sourceLocale
   const image=result.image as InlineArticleImage;if(!image||!/^[a-f0-9]{64}$/.test(image.assetId))throw Error(t('The server returned invalid image metadata.'));
   insert(`[image id="${image.assetId}"]`,[...images.filter(item=>item.assetId!==image.assetId),image]);setFile(null);
  }
- return <div className="wide admin-repeat" aria-busy={working}><h3>{t('Article images and app references')}</h3><p>{t('Insert a reference at the end of a section, then move its shortcode in the paragraph editor. Uploads stay private until the article is published. Save the draft explicitly.')}</p>{error&&<p className="admin-error" role="alert">{error}</p>}
- <fieldset disabled={disabled||working||!sections.length}><label className="admin-field"><span>{t('Insert into section')}</span><select value={Math.min(section,Math.max(0,sections.length-1))} onChange={e=>setSection(Number(e.target.value))}>{sections.map((item,index)=><option key={index} value={index}>{index+1} · {item.heading||t('Untitled section')}</option>)}</select></label>
- <EditorAppPicker label={t('Find an app to reference')} value={[]} disabled={disabled||working||!sections.length} publicOnly sourceLocale={sourceLocale} onApp={app=>setApps(previous=>[...previous.filter(item=>item.id!==app.id),app])} onChange={ids=>{if(ids[0])insert(`[app id="${ids[0]}"]`);}}/>
+ return <div className="wide admin-repeat" aria-busy={working}><h3>{t('Article images and app references')}</h3><p>{t('Place the cursor in a paragraph to insert an app, or select text to replace it. With no cursor position, the app goes at the end of the chosen section. Images are added at the end of the section.')}</p><p>{t('Uploads stay private until the article is published. Save the draft explicitly.')}</p>{error&&<p className="admin-error" role="alert">{error}</p>}
+ <fieldset disabled={disabled||working||!sections.length}><label className="admin-field"><span>{t('Insert into section')}</span><select value={Math.min(selectedSection,Math.max(0,sections.length-1))} onChange={e=>onSectionChange(Number(e.target.value))}>{sections.map((item,index)=><option key={index} value={index}>{index+1} · {item.heading||t('Untitled section')}</option>)}</select></label>
+ <EditorAppPicker
+   label={t('Find an app to reference')}
+   value={[]}
+   disabled={disabled||working||!sections.length}
+   publicOnly
+   sourceLocale={sourceLocale}
+   onApp={app=>setApps(previous=>[...previous.filter(item=>item.id!==app.id),app])}
+   onChange={ids=>{
+     if (!ids[0]) return;
+     const code = `[app id="${ids[0]}"]`;
+     if (!onInsertApp(code)) insert(code);
+   }}
+ />
  <p>{t('Only publicly available apps in the source language are offered.')}</p>
  <label className="admin-field"><span>{t('Image file')}</span><input type="file" accept="image/png,image/jpeg,image/webp" onChange={e=>{setFile(e.target.files?.[0]||null);onDraftTouched();}}/></label><label className="admin-field"><span>{t('Image alternative text')}</span><input value={alt} maxLength={500} onChange={e=>{setAlt(e.target.value);onDraftTouched();}}/></label><label className="admin-field"><span>{t('Image caption')}</span><input value={caption} maxLength={1000} onChange={e=>{setCaption(e.target.value);onDraftTouched();}}/></label><button type="button" className="admin-button" disabled={!file||!alt.trim()||!caption.trim()||images.length>=20} onClick={()=>void run(upload)}>{t('Upload and insert image')}</button>
  {cover&&<button type="button" className="admin-button" disabled={!cover.alt.trim()||!cover.caption.trim()||(images.length>=20&&!images.some(image=>image.assetId===cover.assetId))} onClick={()=>void run(async signal=>{const probe=new Image();probe.src=appIconUrl(`/api/admin/media?id=${cover.assetId}&format=png`);await probe.decode();if(signal.aborted)return;const image:InlineArticleImage={...cover,format:'png',width:probe.naturalWidth,height:probe.naturalHeight,aiGenerated:cover.aiGenerated===true};insert(`[image id="${image.assetId}"]`,[...images.filter(item=>item.assetId!==image.assetId),image]);})}>{t('Insert current AI cover in the article')}</button>}

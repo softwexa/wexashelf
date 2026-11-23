@@ -122,6 +122,8 @@ These tests can create/edit catalog content, feedback and appearance settings. D
 
 The optional [AI browser test](../tests/e2e/ai.spec.ts) requires `AI_E2E_BASE_URL`, the disposable password and [ai-http-router.php](../php/tests/ai-http-router.php). That router requires the dedicated `wexashelf_ai_e2e` database and supplies synthetic provider responses. Start it only with separate fixture storage on a local test server. It is not packaged as a production endpoint. Check current selectors when editing AI Studio; do not replace the fixture with a live paid endpoint to satisfy the test.
 
+To check bulk selection and app insertion at the cursor, use an isolated PHP installation with the sample catalog, an English admin interface and rebuilt browser assets. With `ADMIN_E2E_BASE_URL` and `ADMIN_E2E_PASSWORD` set for that installation, run `npx playwright test tests/e2e/editor-selection.spec.ts`. The test exercises the unsaved editorial form.
+
 ## Installer, package and extension checks
 
 The installer test is for a fresh, uninstalled localhost target and an empty disposable application database. Its database JSON has the flat shape above, and its key file contains that target's private installation key:

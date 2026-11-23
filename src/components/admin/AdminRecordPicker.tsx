@@ -4,6 +4,7 @@ import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { useI18n } from "@/lib/i18n";
 import { appIconUrl } from "@/lib/asset-url";
 import css from "./AdminRecordPicker.module.css";
+import { clearVisibleRecords, selectVisibleRecords } from "./admin-picker-selection";
 
 export type AdminPickerOption = {
   id: string; label: string; detail?: string; icon?: string; keywords?: string;
@@ -59,6 +60,11 @@ export default function AdminRecordPicker({ options, filters = [], value, onChan
   }, [indexed, query, facets, filters]);
   const visible = matches.slice(0, limit);
   const maximum = multiple ? maxSelections : 1;
+  const visibleIds = visible.map(option => option.id);
+  const selectedIds = new Set(draft);
+  const bulkUnavailable = disabled || loading || !!error;
+  const canSelectVisible = !bulkUnavailable && (maximum === undefined || draft.length < maximum) && visibleIds.some(key => !selectedIds.has(key));
+  const canClearVisible = !bulkUnavailable && visibleIds.some(key => selectedIds.has(key));
   const valid = draft.length >= minSelections && (maximum === undefined || draft.length <= maximum);
 
   useEffect(() => {
@@ -118,6 +124,10 @@ export default function AdminRecordPicker({ options, filters = [], value, onChan
       </div>
       <div ref={body} className={css.body}>
         <section className={css.results} aria-busy={loading}>{loading && <p role="status">{t("Kayıtlar yükleniyor…")}</p>}{error && <p role="alert">{error}</p>}<p className={css.count} role="status">{t("{count} sonuç", { count: matches.length })} · {t("{count} gösteriliyor", { count: visible.length })}</p>
+          {multiple && <div className={css.bulkActions}>
+            <button type="button" disabled={!canSelectVisible} aria-controls={`${id}-results`} onClick={() => { if (canSelectVisible) setDraft(current => selectVisibleRecords(current, visibleIds, maximum)); }}>{t("Görünenleri seç")}</button>
+            <button type="button" disabled={!canClearVisible} aria-controls={`${id}-results`} onClick={() => { if (canClearVisible) setDraft(current => clearVisibleRecords(current, visibleIds)); }}>{t("Görünen seçimleri kaldır")}</button>
+          </div>}
           <div ref={resultList} id={`${id}-results`} role="listbox" aria-label={t("Arama sonuçları")} aria-multiselectable={multiple} className={css.list}>
             {visible.map((option, index) => {
               const selected = draft.includes(option.id);
