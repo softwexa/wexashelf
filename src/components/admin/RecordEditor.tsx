@@ -3,6 +3,7 @@ import {useI18n} from "@/lib/i18n";
 import {localeRegistry} from "@/lib/i18n-registry";
 import { useEffect, useId, useRef, useState } from "react";
 import ArticleContentEditor from "./ArticleContentEditor";
+import EditorAppPicker from "./EditorAppPicker";
 import AppIconUpload from "./AppIconUpload";
 import AppScreenshotEditor from "./AppScreenshotEditor";
 import type {InlineArticleImage} from "../discovery/ArticleContent";
@@ -536,14 +537,9 @@ export default function RecordEditor({
               ])}
               {field("publishedAt", t("Yazı yayın tarihi"), { type: "date" })}
               {field("updatedAt", t("Yazı güncelleme tarihi"), { type: "date" })}
-              <TextField
-                label={t("İlgili uygulama kimlikleri")}
-                value={listText.appIds}
-                onChange={(value) => {
-                  setListText((previous) => ({ ...previous, appIds: value }));
-                  setDirty(true);
-                }}
-              />
+              <EditorAppPicker label={t("İlgili uygulama kimlikleri")} multiple disabled={busy}
+                value={(listText.appIds || "").split(",").map(id => id.trim()).filter(Boolean)}
+                onChange={ids => { setListText(previous => ({ ...previous, appIds: ids.join(", ") })); setDirty(true); }} />
               <div className="wide admin-repeat">
                 <h3>{t("Yazı bölümleri")}</h3>
                 {sections.map((section, index) => (
@@ -621,14 +617,15 @@ export default function RecordEditor({
                 {entries.map((entry, index) => (
                   <fieldset key={index}>
                     <legend>{t("Uygulama")}{" "}{index + 1}</legend>
-                    <TextField
+                    <EditorAppPicker
                       label={t("Uygulama {p0} kimliği",{p0:index + 1})}
-                      value={entry.appId}
-                      onChange={(value) =>
+                      disabled={busy}
+                      value={entry.appId ? [entry.appId] : []}
+                      onChange={(ids) =>
                         update(
                           "entries",
                           entries.map((item, i) =>
-                            i === index ? { ...item, appId: value } : item,
+                            i === index ? { ...item, appId: ids[0] || "" } : item,
                           ),
                         )
                       }

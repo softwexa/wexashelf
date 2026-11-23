@@ -76,6 +76,8 @@ Check `Validation::FACTS` when extending source code; the package allowlist foll
 
 The comparison uses the catalogue's existing evidence; installing a package does not verify a claim. Public PHP HTML and React show the same resolved blocks. Links use the locale routing helpers and respect a subdirectory installation. The package's selected app IDs remain stable across languages.
 
+The administration workspace can create a separate editable copy of an API 2 package. The copy starts with a distinct package ID and editable metadata; app-reference blocks can search the published catalogue in the selected preview language, while existing unavailable references remain until removed. Selecting IDs only edits the copy's manifest and does not create, publish or modify app records. Preview the customized manifest through the server and review its normalized result and SHA-256 checksum before installation. Installation and upgrades remain disabled until separately reviewed and enabled; enabling must match the installed checksum and selected preview language.
+
 ## Review, activation, upgrades and export
 
 1. Browse a bundled package or upload a manifest of up to 128 KB. The server validates it and builds a read-only preview from currently available content. Review its locale, references, missing-content notices, checksum and install/upgrade status.
