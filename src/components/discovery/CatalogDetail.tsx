@@ -377,7 +377,7 @@ export function ComparisonPage({
     {
       label: t("Kullanım alanı"),
       values: selected.map(
-        (a) => CATEGORIES.find((c) => c.id === a.category)?.label || a.category,
+        (a) => { const label = CATEGORIES.find((c) => c.id === a.category)?.label; return label ? t(label) : a.category; },
       ),
     },
     {

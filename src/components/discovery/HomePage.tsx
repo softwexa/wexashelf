@@ -6,13 +6,22 @@ import Link from "next/link";
 import {
   ArrowRight,
   ArrowUpRight,
+  Bookmark,
+  BookOpen,
   ChevronRight,
   ListChecks,
   Monitor,
   Sparkles,
   Search,
+  Layers,
+  FileText,
+  NotebookPen,
+  Play,
+  Globe,
+  Palette,
 } from "lucide-react";
 import { useState } from "react";
+import { comparisonApps, ComparisonFeature, ThemeAppCard } from "./ThemeSections";
 import { CATEGORIES } from "../../lib/catalog";
 import { localeContent } from "@/lib/i18n-content";
 import { availableContent } from "@/lib/available-content";
@@ -26,6 +35,7 @@ import {
 import {
   AppIcon,
   AppRow,
+  CompareButton,
   SaveButton,
   Platforms,
   SectionHeading,
@@ -63,10 +73,24 @@ function ClassicHomePage({
   const categories = CATEGORIES.filter((category) =>
     catalog.apps.some((app) => app.category === category.id),
   );
+  const categoryIcons = { productivity: Layers, notes: NotebookPen, documents: FileText, media: Play, browser: Globe, design: Palette, all: Layers };
   const workflow = WORKFLOWS[0];
+  const hasPlatformGuide = activeSections.includes("toolbox") && catalog.apps.length > 0;
+  const hasMigrationGuides = activeSections.includes("guides") && GUIDES.some(guide => guide.kind === "migration");
   const [period, setPeriod] = useState<"week" | "month" | "evergreen">("week");
+  const [directoryCategory, setDirectoryCategory] = useState("");
+  const [directoryPlatform, setDirectoryPlatform] = useState("");
+  const directoryApps = catalog.apps.filter(app => (!directoryCategory || app.category === directoryCategory) && (!directoryPlatform || app.platforms.some(platform => platform === directoryPlatform)));
   const list = catalog.lists.find((l) => l.period === period);
   const weekly = catalog.lists.find((l) => l.period === "week");
+  const weeklyApps = (weekly?.entries ?? []).flatMap((entry) => {
+    const app = catalog.apps.find((candidate) => candidate.id === entry.appId);
+    return app ? [app] : [];
+  });
+  const featuredApps = [...weeklyApps, ...catalog.apps]
+    .filter((app, index, apps) => apps.findIndex((candidate) => candidate.id === app.id) === index)
+    .slice(0, 4);
+  const featuredApp = featuredApps[0];
   const rows = (ids: string[]) =>
     ids
       .map((id) => catalog.apps.find((a) => a.id === id))
@@ -77,11 +101,13 @@ function ClassicHomePage({
           app={app}
           saved={actions.saved}
           onSave={actions.onSave}
+          compare={actions.compare}
+          onCompare={actions.onCompare}
         />
       ));
   const panels: Record<HomeSectionId, React.ReactNode> = {
     discovery: (
-      <section className="home-panel span-7" key="discovery">
+      <section className="home-panel span-7" key="discovery" data-home-section="discovery">
         <SectionHeading
           title={t("Yeni bir şey keşfet")}
           detail={t("Günlük akışına iyi gelecek uygulamalar.")}
@@ -93,7 +119,7 @@ function ClassicHomePage({
       </section>
     ),
     weekly: (
-      <section className="home-panel span-5" key="weekly">
+      <section className="home-panel span-5" key="weekly" data-home-section="weekly">
         <SectionHeading
           title={t("Haftanın seçkisi")}
           detail={weekly?.summary || t("Yeni editör seçkisi hazırlanıyor.")}
@@ -109,7 +135,7 @@ function ClassicHomePage({
       </section>
     ),
     trending: (
-      <section className="home-panel span-7" key="trending">
+      <section className="home-panel span-7" key="trending" data-home-section="trending">
         <SectionHeading
           title={t("Göz atmaya değer")}
           detail={t("Kaynakları ve seçim gerekçeleriyle editör listeleri.")}
@@ -127,7 +153,7 @@ function ClassicHomePage({
           ))}
         </div>
         <div className="app-list">
-          {rows(list?.entries.map((e) => e.appId) || [])}
+          {rows(list?.entries.slice(0, 4).map((e) => e.appId) || [])}
         </div>
         {!list && (
           <p className="settings-note">{t("Bu dönem için yayımlanmış seçki bulunmuyor.")}</p>
@@ -139,7 +165,7 @@ function ClassicHomePage({
       </section>
     ),
     toolbox: (
-      <section className="home-panel span-5 toolbox" key="toolbox">
+      <section className="home-panel span-5 toolbox" key="toolbox" data-home-section="toolbox">
         <SectionHeading
           title={t("Karar vermek kolaylaşsın")}
           detail={t("İndirmeden önce birkaç doğru soru.")}
@@ -168,7 +194,7 @@ function ClassicHomePage({
       </section>
     ),
     guides: (
-      <section className="home-panel span-6 editorial-panel" key="guides">
+      <section className="home-panel span-6 editorial-panel" key="guides" data-home-section="guides">
         <SectionHeading
           title={t("Küçük rehberler, rahat başlangıçlar")}
           detail={t("Bir sonraki adımın belli olsun.")}
@@ -189,7 +215,7 @@ function ClassicHomePage({
       </section>
     ),
     workflows: (
-      <section className="home-panel span-6 editorial-panel" key="workflows">
+      <section className="home-panel span-6 editorial-panel" key="workflows" data-home-section="workflows">
         <SectionHeading
           title={t("Uygulamaları birlikte düşün")}
           detail={t("Bir işi baştan sona düzenle.")}
@@ -208,16 +234,44 @@ function ClassicHomePage({
       </section>
     ),
   };
+  if (template === "atlas") {
+    panels.discovery = <section className="home-panel classic-atlas-discovery" key="discovery" data-home-section="discovery">
+      <SectionHeading title={t("Yeni bir şey keşfet")} detail={t("Günlük akışına iyi gelecek uygulamalar.")} href="/kesfet"/>
+      <div className="classic-atlas-modules">{categories.slice(0, 3).map(category => {
+        const Icon = categoryIcons[category.id];
+        return <div key={category.id}><Link className="classic-atlas-category" href={`/kategori/${category.id}`}><Icon size={21} aria-hidden="true"/><span>{t(category.label)}</span><ArrowUpRight size={16}/></Link><div className="app-list">{rows(catalog.apps.filter(app => app.category === category.id).slice(0, 3).map(app => app.id))}</div></div>;
+      })}</div>
+    </section>;
+    const authoredPair = catalog.articles.filter(article => article.kind === "comparison").map(article => article.appIds.flatMap(id => {
+      const app = catalog.apps.find(candidate => candidate.id === id);
+      return app ? [app] : [];
+    })).find(apps => apps.length >= 2);
+    const preferredPair = comparisonApps(catalog.apps);
+    const comparableApps = authoredPair?.slice(0, 2) ?? (preferredPair.length === 2 && preferredPair[0].category === preferredPair[1].category ? preferredPair : []);
+    if (comparableApps.length >= 2) {
+      panels.toolbox = <section className="home-panel atlas-comparison" key="toolbox" data-home-section="toolbox"><p className="atlas-comparison-intro">{t("Compare up to four apps using their key details and sourced features.")}</p><ComparisonFeature apps={comparableApps}/></section>;
+    }
+    // Keep the authored selection separate from the featured app's quick preview.
+    panels.weekly = <section className="home-panel atlas-editorial" key="weekly" data-home-section="weekly"><span className="eyebrow">{t("Haftanın seçkisi")}</span><h2>{weekly?.title || t("Yeni editör seçkisi hazırlanıyor.")}</h2>{weekly && <><p>{weekly.summary}</p><Link className="text-link" href={`/liste/${weekly.id}`}>{t("Seçim gerekçelerini oku")}<ArrowRight size={16}/></Link></>}</section>;
+  }
+  if (template === "catalog") {
+    panels.discovery = <section className="home-panel catalog-discovery" key="discovery" data-home-section="discovery">
+      <SectionHeading title={t("Yeni bir şey keşfet")} detail={t("Günlük akışına iyi gelecek uygulamalar.")} href="/kesfet"/>
+      <div className="catalog-app-shelf">{catalog.apps.slice(0, 6).map(app => <ThemeAppCard key={app.id} app={app} row compact {...actions}/>)}</div>
+    </section>;
+  }
   if (template === "magazine") {
     const lead = catalog.articles[0];
-    panels.discovery = <section className="home-panel magazine-discovery" key="discovery">
+    panels.discovery = <section className="home-panel magazine-discovery" key="discovery" data-home-section="discovery">
       <div className="magazine-lead"><h2>{t("From the editorial desk")}</h2>{lead ? <article><h3><Link href={`/blog/${lead.id}`}>{lead.title}</Link></h3><p>{lead.summary}</p><Link className="text-link" href={`/blog/${lead.id}`}>{t("Read the article")} <ArrowRight size={16}/></Link></article> : <><p>{t("Browse the catalog while new editorial articles are prepared.")}</p><Link className="text-link" href="/kesfet">{t("Kataloğu keşfet")}</Link></>}</div>
       <div className="magazine-apps"><h2>{t("Apps to examine")}</h2><div className="app-list">{rows(catalog.apps.slice(0,3).map(app=>app.id))}</div></div>
     </section>;
   }
   if (template === "directory") {
-    panels.discovery = <section className="home-panel directory-discovery" key="discovery"><SectionHeading title={t("App directory")} detail={t("Recorded facts at a glance. Open an app to review its sources.")} href="/kesfet"/>
-      {catalog.apps.length>0&&<div className="directory-scroll" role="region" aria-label={t("App directory table")} tabIndex={0}><table className="directory-table"><caption>{t("A selection from the catalog; browse all apps to search the full collection.")}</caption><thead><tr><th scope="col">{t("App")}</th><th scope="col">{t("Platforms")}</th><th scope="col">{t("Pricing summary")}</th><th scope="col">{t("Checked date")}</th><th scope="col">{t("Save")}</th></tr></thead><tbody>{catalog.apps.slice(0,8).map(app=><tr key={app.id}><th scope="row"><Link href={`/uygulama/${app.id}`}><AppIcon app={app}/><span>{app.name}<small>{app.tagline}</small></span></Link></th><td><Platforms platforms={app.platforms}/></td><td>{app.pricingLabel||t("Unverified")}</td><td>{app.checkedAt?formatDate(app.checkedAt):t("Unverified")}</td><td><SaveButton app={app} saved={actions.saved.includes(app.id)} onSave={actions.onSave}/></td></tr>)}</tbody></table></div>}
+    panels.discovery = <section className="home-panel directory-discovery" key="discovery" data-home-section="discovery"><SectionHeading title={t("App directory")} detail={t("Recorded facts at a glance. Open an app to review its sources.")} href="/kesfet"/>
+      <div className="classic-directory-filters"><label>{t("Kategoriler")}<select value={directoryCategory} onChange={event => setDirectoryCategory(event.target.value)}><option value="">{t("Tümü")}</option>{categories.map(category => <option key={category.id} value={category.id}>{t(category.label)}</option>)}</select></label><label>{t("Platformlar")}<select value={directoryPlatform} onChange={event => setDirectoryPlatform(event.target.value)}><option value="">{t("Tümü")}</option>{Array.from(new Set(catalog.apps.flatMap(app => app.platforms))).map(platform => <option key={platform} value={platform}>{platform === "ios" ? "iOS" : platform === "android" ? "Android" : platform === "windows" ? "Windows" : platform}</option>)}</select></label><Link className="text-link" href="/kesfet">{t("Browse all apps")}<ArrowRight size={14}/></Link></div>
+      {directoryApps.length === 0 && catalog.apps.length > 0 && <p role="status">{t("Bu filtrelerle uygulama bulunamadı.")}</p>}
+      {catalog.apps.length>0&&<div className="directory-scroll" role="region" aria-label={t("App directory table")} tabIndex={0}><table className="directory-table"><caption>{t("A selection from the catalog; browse all apps to search the full collection.")}</caption><thead><tr><th scope="col">{t("App")}</th><th scope="col">{t("Platforms")}</th><th scope="col">{t("Pricing summary")}</th><th scope="col">{t("Checked date")}</th><th scope="col">{t("Karşılaştır")}</th><th scope="col">{t("Save")}</th></tr></thead><tbody>{directoryApps.slice(0,12).map(app=><tr key={app.id}><th scope="row"><Link href={`/uygulama/${app.id}`}><AppIcon app={app}/><span>{app.name}<small>{app.tagline}</small></span></Link></th><td><Platforms platforms={app.platforms}/></td><td>{app.pricingLabel||t("Unverified")}</td><td>{app.checkedAt?formatDate(app.checkedAt):t("Unverified")}</td><td><CompareButton app={app} selected={actions.compare.includes(app.id)} onCompare={actions.onCompare}/></td><td><SaveButton app={app} saved={actions.saved.includes(app.id)} onSave={actions.onSave}/></td></tr>)}</tbody></table></div>}
     </section>;
   }
   const hero = catalog.apps.filter((a) =>
@@ -225,14 +279,24 @@ function ClassicHomePage({
   );
   return (
     <>
-      <div className="welcome-line">
-        <span>{t("Az uygulama. Daha iyi bir düzen.")}</span>
-        <span>Android · iOS · Windows</span>
-      </div>
+
       {template === "magazine" || template === "directory" ? (
         <section className={`template-heading template-heading-${template}`}><div><h1>{t(template === "magazine" ? "Read the context. Choose your tools." : "Find an app. Check the details.")}</h1><p>{t(template === "magazine" ? "Editorial reading and practical app choices, in one place." : "Scan platforms and recorded pricing, then open the evidence behind each app.")}</p></div><Link className="button button-primary" href="/kesfet">{t("Browse all apps")} <ArrowRight size={16}/></Link></section>
+      ) : template === "catalog" ? (
+        <section className="template-hero template-hero-catalog">
+          <div className="catalog-preview">
+            <article className="catalog-feature">
+              <div className="template-hero-copy"><span className="eyebrow">{t("Kendi rafını oluştur")}</span><h1>{t("Gününe iyi gelecek bir uygulama.")}</h1><p>{t("Uygulamaları keşfet, ilgini çekenleri kaydet. Seçimini kendi hızında yap.")}</p><Link className="button button-primary" href="/kesfet">{t("Kataloğu keşfet")}<ArrowRight size={16}/></Link></div>
+              {activeSections.includes("discovery") && featuredApps.length > 0 && <div className="catalog-feature-shortlist" aria-label={t("Yeni bir şey keşfet")}>{featuredApps.slice(0, 3).map(app => <div className="catalog-shortlist-row" key={app.id}><Link href={`/uygulama/${app.id}`}><AppIcon app={app}/><span>{app.name}</span><ArrowUpRight size={16}/></Link><SaveButton app={app} saved={actions.saved.includes(app.id)} onSave={actions.onSave}/></div>)}</div>}
+            </article>
+            <div className="catalog-utility-tiles">
+              <Link className="catalog-utility-tile" href={hasPlatformGuide ? "/platform-farklari" : activeSections.includes("toolbox") ? "/secim-sihirbazi" : "/kesfet"}>{hasPlatformGuide ? <Monitor size={26}/> : <ListChecks size={26}/>}<h2>{t(hasPlatformGuide ? "Platform farkları" : activeSections.includes("toolbox") ? "İhtiyacını birlikte netleştirelim" : "Kataloğu keşfet")}</h2><p>{t(hasPlatformGuide ? "İndirmeden önce birkaç doğru soru." : activeSections.includes("toolbox") ? "Cihazlarını ve vazgeçemediğin özellikleri seç." : "Günlük akışına iyi gelecek uygulamalar.")}</p><ArrowRight size={20}/></Link>
+              <Link className="catalog-utility-tile" href={hasMigrationGuides ? "/gecis-rehberleri" : "/kaydedilenler"}>{hasMigrationGuides ? <BookOpen size={26}/> : <Bookmark size={26}/>}<h2>{t(hasMigrationGuides ? "Geçiş rehberleri" : "Kaydedilenler")}</h2><p>{t(hasMigrationGuides ? "Bir sonraki adımın belli olsun." : "Uygulamaları keşfet, ilgini çekenleri kaydet. Seçimini kendi hızında yap.")}</p><ArrowRight size={20}/></Link>
+            </div>
+          </div>
+        </section>
       ) : template !== "night" ? (
-        <section className={`template-hero template-hero-${template}`}>
+        <section className={`template-hero template-hero-${template}${template === "atlas" && activeSections.includes("discovery") && featuredApp ? " atlas-has-feature" : ""}`}>
           <div className="template-hero-copy">
             <span className="eyebrow">
               {template === "atlas"
@@ -243,7 +307,7 @@ function ClassicHomePage({
             </span>
             <h1>
               {template === "atlas"
-                ? t("Bir ihtiyacın var. Doğru aracı bulalım.")
+                ? <span className="atlas-title-mark">{t("Find an app that fits.")}</span>
                 : template === "workflow"
                   ? t("Dağınık işleri, sakin bir akışa dönüştür.")
                   : t("Gününe iyi gelecek bir uygulama.")}
@@ -255,15 +319,15 @@ function ClassicHomePage({
                   ? t("Bir başlangıç noktası seç. Araçların hangi adımda işe yaradığını gör.")
                   : t("Uygulamaları keşfet, ilgini çekenleri kaydet. Seçimini kendi hızında yap.")}
             </p>
-            {template === "atlas" ? (
-              <form action="/kesfet" className="atlas-search" role="search">
-                <label htmlFor="atlas-query">{t("Ne yapmak istiyorsun?")}</label>
+            {template === "atlas" || template === "workflow" ? (
+              <form action="/kesfet" className={template === "atlas" ? "atlas-search" : "atlas-search workflow-search"} role="search">
+                <label htmlFor={`${template}-query`}>{t("Ne yapmak istiyorsun?")}</label>
                 <div>
                   <Search size={20} aria-hidden="true" />
                   <input
-                    id="atlas-query"
+                    id={`${template}-query`}
                     name="q"
-                    placeholder={t("Uygulama, özellik veya ihtiyaç")}
+                    placeholder={t("Uygulama ara")}
                   />
                   <button className="button button-primary" type="submit">{t("Ara")}<ArrowRight size={16} />
                   </button>
@@ -272,75 +336,77 @@ function ClassicHomePage({
             ) : (
               <Link
                 className="button button-primary"
-                href={
-                  template === "workflow" &&
-                  activeSections.includes("workflows")
-                    ? "/is-akislari"
-                    : "/kesfet"
-                }
+                href="/kesfet"
               >
-                {template === "workflow" && activeSections.includes("workflows")
-                  ? t("İş akışlarını incele")
-                  : t("Kataloğu keşfet")}{" "}
+                {t("Kataloğu keşfet")}{" "}
                 <ArrowRight size={16} />
               </Link>
             )}
-          </div>
-          {template === "atlas" &&
-            activeSections.includes("discovery") &&
-            categories.length > 0 && (
-              <nav
-                className="atlas-categories"
-                aria-label={t("Uygulama kategorileri")}
-              >
-                {categories.map((category) => (
-                  <Link href={`/kategori/${category.id}`} key={category.id}>
-                    <span>{t(category.label)}</span>
-                    <ArrowUpRight size={18} />
+            {(template === "atlas" || template === "workflow") && (
+              <nav className={`template-platforms ${template === "atlas" ? "atlas-platforms" : ""}`} aria-label={t("Platformlar")}>
+                {(["android", "ios", "windows"] as const).map((platform) => (
+                  <Link key={platform} href={`/kesfet?platform=${platform}`}>
+                    <Platforms platforms={[platform]} />
+                    <span>{platform === "android" ? "Android" : platform === "ios" ? "iOS" : "Windows"}</span>
                   </Link>
                 ))}
               </nav>
             )}
+          </div>
+          {template === "atlas" && activeSections.includes("discovery") && featuredApp && (
+            <aside className="atlas-feature" aria-label={t("Featured app")}>
+              <div className="atlas-feature-lead">
+                <span className="eyebrow">{t("Featured app")}</span>
+                <Link href={`/uygulama/${featuredApp.id}`}>
+                  <AppIcon app={featuredApp} large />
+                  <h2>{featuredApp.name}</h2>
+                </Link>
+                <p>{featuredApp.tagline}</p>
+                <Platforms platforms={featuredApp.platforms} />
+                <Link className="button button-primary" href={`/uygulama/${featuredApp.id}`}>
+                  {t("İncele")} <ArrowRight size={16} />
+                </Link>
+              </div>
+              {featuredApps.length > 1 && <div className="atlas-feature-shortlist">
+                {featuredApps.slice(1).map((app) => (
+                  <Link href={`/uygulama/${app.id}`} key={app.id}>
+                    <AppIcon app={app} />
+                    <span>{app.name}<small>{app.tagline}</small></span>
+                    <ChevronRight size={16} aria-hidden="true" />
+                  </Link>
+                ))}
+              </div>}
+            </aside>
+          )}
           {template === "workflow" && workflow && activeSections.includes("workflows") && (
             <div className="workflow-preview">
               <h2>{workflow.title}</h2>
-              <ol>
-                {workflow.steps.map((step) => {
+              <ol className="workflow-app-flow">
+                {workflow.steps.map((step, index) => {
                   const app = catalog.apps.find(
                     (entry) => entry.id === step.appId,
                   );
                   return (
-                    <li key={step.title}>
-                      <h3>{step.title}</h3>
-                      <p>{step.description}</p>
+                    <li key={step.title} className="workflow-flow-step">
+                      <span className="classic-step-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><h3>{step.title}</h3>
                       {app && (
-                        <Link href={`/uygulama/${app.id}`}>
-                          <AppIcon app={app} />
-                          <span>{app.name}</span>
-                          <ArrowUpRight size={14} />
+                        <Link className="workflow-flow-link" href={`/uygulama/${app.id}`}>
+                          <AppIcon app={app} large />
+                          <strong>{app.name}</strong>
                         </Link>
                       )}
+                      <p>{step.description}</p>
+                      {index < workflow.steps.length - 1 && <ArrowRight className="workflow-connector" size={24} aria-hidden="true" />}
                     </li>
                   );
                 })}
               </ol>
+              <Link className="button button-primary" href={`/is-akisi/${workflow.id}`}>
+                {t("İş akışlarını incele")} <ArrowRight size={16} />
+              </Link>
             </div>
           )}
-          {template === "catalog" && activeSections.includes("discovery") && (
-            <div className="catalog-preview">
-              {catalog.apps.slice(0, 3).map((app) => (
-                <Link key={app.id} href={`/uygulama/${app.id}`}>
-                  <AppIcon app={app} large />
-                  <div>
-                    <h2>{app.name}</h2>
-                    <p>{app.tagline}</p>
-                    <Platforms platforms={app.platforms} />
-                  </div>
-                  <ArrowUpRight size={20} />
-                </Link>
-              ))}
-            </div>
-          )}
+
         </section>
       ) : (
         <section className="hero">
@@ -382,6 +448,16 @@ function ClassicHomePage({
           </div>
         </section>
       )}
+      {template === "atlas" && activeSections.includes("discovery") && categories.length > 0 && (
+        <nav className="atlas-categories classic-category-strip" aria-label={t("Uygulama kategorileri")}>
+          {categories.map((category) => {
+            const Icon = categoryIcons[category.id];
+            return <Link href={`/kategori/${category.id}`} key={category.id}>
+              <Icon size={20} aria-hidden="true"/><span>{t(category.label)}</span><ArrowUpRight size={14} aria-hidden="true" />
+            </Link>;
+          })}
+        </nav>
+      )}
       {!catalog.apps.length && (
         <section className="home-panel detail-section empty-catalog">
           <h2>{t("Şu anda listelenebilen uygulama yok.")}</h2>
@@ -389,11 +465,7 @@ function ClassicHomePage({
           <Link className="button button-secondary" href="/blog">{t("Blog ve rehberleri oku")}</Link>
         </section>
       )}
-      <div className="home-intro">
-        <h2>{t("Senin için bir başlangıç noktası.")}</h2>
-        <p>{t("Bir araç seç. Bir alışkanlık oluştur. Gerisini sadeleştir.")}</p>
-      </div>
-      <div className="home-grid">{activeSections.map((id) => panels[id])}</div>
+      <div className="home-grid classic-home-grid">{activeSections.map((id) => panels[id])}</div>
     </>
   );
 }

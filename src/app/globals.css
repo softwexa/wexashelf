@@ -1192,6 +1192,7 @@ img {
 .compare-dock > span {
   font-size: 11px;
   color: var(--muted);
+  white-space: normal;
 }
 .dock-icons {
   display: flex;
@@ -1203,6 +1204,41 @@ img {
   border-radius: 7px;
   border: 2px solid var(--surface-raised);
   margin-left: -4px;
+}
+.dock-icons .dock-remove {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--foreground);
+  cursor: pointer;
+}
+.dock-icons .dock-remove .app-icon { margin: 0; }
+.dock-remove-mark {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  border-radius: 50%;
+  background: var(--surface-raised);
+  color: var(--muted);
+}
+.dock-remove:hover .dock-remove-mark { color: var(--foreground); }
+.dock-remove:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.catalog-experience:has(.compare-dock) { --compare-clearance: 120px; }
+.catalog-experience:has(.compare-dock) .site-footer {
+  padding-bottom: var(--compare-clearance);
+}
+.catalog-experience:has(.compare-dock) .main-shell :where(a, button, input, select, textarea, [tabindex]) {
+  scroll-margin-block-end: var(--compare-clearance);
+}
+@media (max-width: 640px) {
+  .catalog-experience:has(.compare-dock) { --compare-clearance: 180px; }
 }
 .menu-button,
 .nav-backdrop {
@@ -1781,7 +1817,11 @@ img {
   .compare-dock .button {
     font-size: 11px;
     padding: 9px 12px;
+    min-height: 44px;
   }
+  .compare-dock { flex-wrap: wrap; justify-content: center; }
+  .compare-dock > .icon-button { min-width: 44px; min-height: 44px; }
+  .compare-dock .dock-icons { padding-left: 0; }
   .dock-icons .app-icon {
     width: 26px;
     height: 26px;

@@ -1,6 +1,6 @@
 # Theme development
 
-WexaShelf themes use a portable JSON manifest. Website owners can import a theme without Node.js on their host. The installed application supplies the layouts; the manifest chooses navigation, eight colors, density, homepage section order and optional presentation controls. See the [theme collection](THEME-COLLECTION.md) for the ten new presets and their screenshot paths.
+WexaShelf themes use a portable JSON manifest. Website owners can import a theme without Node.js on their host. The installed application supplies the layouts; the manifest chooses navigation, eight colors, density, homepage section order and optional presentation controls. See the [theme collection](THEME-COLLECTION.md) for all sixteen presets and their screenshot paths.
 
 Start with [the working Harbor example](../examples/community-theme/README.md). The authoritative contract is [`ThemeManifest` and `parseThemeManifest`](../src/lib/themes.ts); PHP checks the same fields in [`Validation::siteSettings`](../php/app/Validation.php).
 
@@ -64,7 +64,7 @@ Branding belongs to the SEO settings document and its own revision, not the them
 
 ### Gallery screenshots and live previews
 
-The ten new built-in presets use `/themes/PRESET-ID/screen.jpg` in the gallery. These static images are captures of the preset's working homepage, not generated concept art and not a rendering of the current owner's content or edits. The gallery labels them **Preset screenshot** and links to the full image. Missing screenshot files fall back to the generated layout miniature. Imported theme IDs do not create arbitrary image URLs.
+All sixteen built-in presets use `/themes/PRESET-ID/preview.jpg` as the gallery thumbnail and link to `/themes/PRESET-ID/screen.jpg` for the full-page image. These static images are captures of the preset's working homepage, not generated concept art and not a rendering of the current owner's content or edits. The gallery labels them **Preset screenshot** and **Open full image**. If the thumbnail is missing, the gallery falls back to the generated layout miniature. Imported theme IDs do not create arbitrary image URLs.
 
 The exact image files must be captured from the final local runtime before distribution; screenshot presence does not establish functional, accessibility or performance checks. Keep the captures alongside the preset folders and rebuild the PHP package so its assets match. Use the live draft preview to assess owner changes. Image URLs use the installation base path, including subdirectory deployments.
 
