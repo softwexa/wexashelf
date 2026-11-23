@@ -28,7 +28,9 @@ Existing save, revision and publication behavior is unchanged. Leaving an unsave
 
 ## Choosing catalog records
 
-Record editors use a shared modal picker to select multiple related apps for an article and one app per list entry. In article content, choosing an app inserts an `[app id="…"]` reference at the end of the selected section. AI Studio uses the picker for its single target record and, for app-source tasks, an ordered set of up to four source apps. The picker supports typed search and available filters, loads additional server results as needed, and accepts keyboard selection with the arrow and Enter keys. Multi-selection can be reordered. **Apply** transfers the draft selection to the form; **Cancel** discards picker changes.
+Record editors use a shared picker for an article's related apps and individual list entries. In article paragraphs, the picker can insert an `[app id="…"]` reference at the cursor or replace highlighted text. AI Studio uses the picker for its target record and for up to four ordered source apps.
+
+Type to search, narrow the results with the available filters, and use the arrow and Enter keys to choose a row. In a multi-select picker, **Select displayed** adds the rows currently shown in order until the selection limit is reached. **Clear displayed** removes the shown rows from the selection. Choices from other searches and filters keep their order. You can reorder individual choices before selecting **Apply** to transfer them to the form. **Cancel** discards the edits made in the picker.
 
 In **Themes and modules**, the package picker searches bundled and installed packages and filters by API, installation state, available app references and block type. API 2 packages can be copied into a separate editable draft with its own package ID and metadata. Its app picker searches apps published in the selected preview language. Choosing app IDs creates references for that package copy; it does not publish, edit or duplicate catalog records. The customized manifest must be previewed by the server, reviewed with its checksum, then installed disabled. Enabling remains a separate review-bound action.
 

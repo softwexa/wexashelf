@@ -2388,6 +2388,10 @@
     "ui.fdcc03050f77": "Use a distinct package ID, valid metadata and the required number of references.",
     "ui.c5704b185a78": "Search published apps in the displayed language. Existing unavailable references are retained until removed.",
     "ui.de524c469305": "Customization searches published apps in this language:",
-    "ui.920e413c7d41": "Status"
+    "ui.920e413c7d41": "Status",
+    "ui.5bbb588ee3b0": "Select displayed",
+    "ui.dd33f2339d38": "Clear displayed",
+    "ui.8b554421a871": "Place the cursor in a paragraph to insert an app, or select text to replace it. With no cursor position, the app goes at the end of the chosen section. Images are added at the end of the section.",
+    "ui.c3fd43e919f3": "Uploads stay private until the article is published. Save the draft explicitly."
   }
 }
