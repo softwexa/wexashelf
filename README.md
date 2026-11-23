@@ -1,8 +1,8 @@
 # WexaShelf · Self-hosted app directory
 
-WexaShelf is a self-hosted app directory for Android, iOS and Windows. Use it to publish app listings, comparisons and guides on your own domain.
+WexaShelf is an open-source, self-hosted app directory for Android, iOS, and Windows. Publish comparisons and guides on your own domain with listings that link to the Google Play Store, Apple App Store, and Microsoft Store.
 
-WexaShelf links to official store pages; it does not host APK, EXE or other application binaries. Its public catalog can include app guides, comparisons, alternatives, editorial lists and articles, with source references kept alongside the content.
+Readers install apps through their official store pages. The catalog can also include alternatives, editorial lists, and articles, with source references alongside the content.
 
 ## What it includes
 
