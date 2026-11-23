@@ -31,10 +31,23 @@ test('unavailable guide/workflow detail shows an honest state instead of bundled
 test('complete workflow references retain the ordered preview',()=>{
  const apps=APPS.map(app=>({...app,publisher:'Publisher',tags:[],aliases:[],pricingModel:'unknown' as const,facts:[],plans:[],storeMetrics:[]}));
  const html=renderToStaticMarkup(React.createElement(HomePage,{catalog:{apps,articles:[],lists:[],records:[]},theme:BUILTIN_THEMES.find(theme=>theme.template==='workflow')!,plugins:['workflow-collections'],...actions}));
- assert.match(html,/class="workflow-preview"/);assert.match(html,/<ol>/);
+ assert.match(html,/class="workflow-preview"/);assert.match(html,/<ol\b[^>]*>/);
 });
 test('missing sample apps do not hide independent authored articles or lists',()=>{
  const catalog={apps:[],records:[],articles:[{id:'independent-article',title:'Independent editorial article',sections:[]}],lists:[{id:'independent-list',title:'Independent editorial list',summary:'Authored selection',period:'week',entries:[]}]} as unknown as import('../src/lib/domain').CatalogSnapshot;
  const html=renderToStaticMarkup(React.createElement(HomePage,{catalog,theme:BUILTIN_THEMES[0],plugins:['migration-guides'],...actions}));
  assert.match(html,/href="\/blog\/independent-article"/);assert.match(html,/href="\/liste\/independent-list"/);assert.doesNotMatch(html,/href="\/(rehber|is-akisi)\//);
+});
+
+test('Atlas comparison uses an available same-category pair and honors toolbox gating',()=>{
+ const theme=BUILTIN_THEMES.find(theme=>theme.template==='atlas')!;
+ const apps=APPS.map(app=>({...app,publisher:'Publisher',tags:[],aliases:[],pricingModel:'unknown' as const,facts:[],plans:[],storeMetrics:[]}));
+ const render=(records:typeof apps,plugins:string[])=>renderToStaticMarkup(React.createElement(HomePage,{catalog:{apps:records,articles:[],lists:[],records:[]},theme,plugins,...actions}));
+ const pair=apps.filter(app=>app.category==='notes').slice(0,2);
+ assert.equal(pair.length,2);
+ const html=render(pair,['decision-tools']);
+ assert.match(html,/class="home-panel atlas-comparison"/);
+ assert.ok(html.includes(`/karsilastir?apps=${pair.map(app=>app.id).join(',')}`));
+ assert.doesNotMatch(render(pair,[]),/class="home-panel atlas-comparison"/);
+ assert.doesNotMatch(render(pair.slice(0,1),['decision-tools']),/class="home-panel atlas-comparison"/);
 });

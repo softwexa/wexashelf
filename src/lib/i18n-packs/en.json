@@ -2388,6 +2388,8 @@
     "ui.fdcc03050f77": "Use a distinct package ID, valid metadata and the required number of references.",
     "ui.c5704b185a78": "Search published apps in the displayed language. Existing unavailable references are retained until removed.",
     "ui.de524c469305": "Customization searches published apps in this language:",
-    "ui.920e413c7d41": "Status"
+    "ui.920e413c7d41": "Status",
+    "ui.a665cb66aabf": "Find an app that fits.",
+    "ui.3355be1831da": "Featured app"
   }
 }

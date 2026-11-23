@@ -2388,6 +2388,8 @@
     "ui.fdcc03050f77": "Farklı bir paket kimliği, geçerli üst bilgiler ve gerekli sayıda referans kullanın.",
     "ui.c5704b185a78": "Gösterilen dilde yayımlanmış uygulamaları arayın. Kullanılamayan mevcut referanslar kaldırılana kadar korunur.",
     "ui.de524c469305": "Özelleştirme sırasında şu dilde yayımlanmış uygulamalar aranır:",
-    "ui.920e413c7d41": "Durum"
+    "ui.920e413c7d41": "Durum",
+    "ui.a665cb66aabf": "İşine yarayan uygulamayı bul.",
+    "ui.3355be1831da": "Öne çıkan uygulama"
   }
 }

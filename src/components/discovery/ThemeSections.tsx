@@ -46,6 +46,28 @@ export function ThemeAppCard({ app, row = false, prominent = false, compact = fa
   </article>;
 }
 
+export function AppShowcase({ apps, variant = "shortlist", ...actions }: { apps: AppRecord[]; variant?: "shortlist" | "featured" | "mosaic" } & AppActions) {
+  const { t } = useI18n();
+  const picks = apps.slice(0, variant === "mosaic" ? 4 : 3);
+  if (!picks.length) return null;
+  const featured = variant === "featured" ? picks[0] : undefined;
+  return <aside className={`theme-hero-showcase is-${variant}`}>
+    <div className="theme-hero-showcase-heading"><span className="theme-kicker">{t("Keşfet")}</span><Link className="theme-text-link" href="/kesfet">{t("Tümünü gör")}<ArrowUpRight size={15}/></Link></div>
+    {featured && <div className="theme-hero-feature"><ThemeAppCard app={featured} prominent {...actions}/></div>}
+    <div className="theme-hero-showcase-list">{(featured ? picks.slice(1) : picks).map(app => <ThemeAppCard key={app.id} app={app} row compact {...actions}/>)}</div>
+  </aside>;
+}
+
+/** Device shelves use the catalog's declared compatibility, never guessed availability. */
+export function PlatformShelves({ apps, ...actions }: { apps: AppRecord[] } & AppActions) {
+  const { t } = useI18n();
+  return <div className="theme-platform-shelves">{(["android", "ios", "windows"] as Platform[]).map(platform => {
+    const compatible = apps.filter(app => app.platforms.includes(platform)).slice(0, 3);
+    if (!compatible.length) return null;
+    return <section className="theme-platform-shelf" key={platform}><header><span className="theme-kicker">{t("Platform")}</span><h3>{PLATFORM_LABELS[platform]}</h3><Link className="theme-text-link" href={`/kesfet?platform=${platform}`}>{t("Tümünü gör")}<ArrowUpRight size={16}/></Link></header><div>{compatible.map(app => <ThemeAppCard key={app.id} app={app} row compact {...actions}/>)}</div></section>;
+  })}</div>;
+}
+
 export function comparisonApps(apps: AppRecord[]): AppRecord[] {
   const named = ["notion", "obsidian"].map(id => apps.find(app => app.id === id)).filter((app): app is AppRecord => !!app);
   return named.length === 2 ? named : apps.slice(0, 2);
