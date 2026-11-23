@@ -636,10 +636,22 @@ function CatalogWorkspace({
       </div>
       {compare.length > 0 && route !== "karsilastir" && (
         <div className="compare-dock" inert={drawer}>
-          <div className="dock-icons">
-            {selectedApps(compare).map((a) => (
-              <AppIcon key={a.id} app={a} />
-            ))}
+          <div className="dock-icons" role="group" aria-label={t("Karşılaştır")}>
+            {compare.map((id) => {
+              const app = appById(id);
+              const label = t("{name} karşılaştırmadan kaldır", { name: app?.name || id });
+              return <button
+                key={id}
+                type="button"
+                className="dock-remove"
+                aria-label={label}
+                title={label}
+                onClick={() => toggleCompare(id)}
+              >
+                {app ? <AppIcon app={app} /> : <Layers3 size={20} aria-hidden="true" />}
+                <X className="dock-remove-mark" size={11} aria-hidden="true" />
+              </button>;
+            })}
           </div>
           <span>
             {selectedApps(compare).length}{" "}{t("uygulama hazır")}{compare.length > selectedApps(compare).length
@@ -649,7 +661,7 @@ function CatalogWorkspace({
           <Link
             className="button button-primary"
             href={`/karsilastir?apps=${compare.join(",")}`}
-          >{t("Karşılaştır")}<ArrowRight size={15} />
+          >{t(selectedApps(compare).length < 2 ? "Bir uygulama seç" : "Karşılaştır")}<ArrowRight size={15} />
           </Link>
           <button
             className="icon-button"

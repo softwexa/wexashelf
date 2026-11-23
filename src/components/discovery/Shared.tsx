@@ -132,6 +132,20 @@ export function SaveButton({
     </button>
   );
 }
+export function CompareButton({ app, selected, onCompare }: {
+  app: CatalogApp;
+  selected: boolean;
+  onCompare: (id: string) => void;
+}) {
+  const { t } = useI18n();
+  const label = `${app.name}: ${t("Karşılaştır")}`;
+  return (
+    <button type="button" className={`icon-button row-compare-button${selected ? " selected" : ""}`}
+      aria-label={label} title={`${app.name}: ${t("Karşılaştır")}`} aria-pressed={selected} onClick={() => onCompare(app.id)}>
+      {selected ? <Check size={17} aria-hidden="true" /> : <GitCompareArrows size={17} aria-hidden="true" />}
+    </button>
+  );
+}
 export interface AppActions {
   saved: string[];
   compare: string[];
@@ -142,10 +156,14 @@ export function AppRow({
   app,
   saved,
   onSave,
+  compare = [],
+  onCompare,
 }: {
   app: CatalogApp;
   saved: string[];
   onSave: (id: string) => void;
+  compare?: string[];
+  onCompare?: (id: string) => void;
 }) {
   return (
     <div className="app-row">
@@ -157,7 +175,10 @@ export function AppRow({
         </div>
       </Link>
       <Platforms platforms={app.platforms} />
-      <SaveButton app={app} saved={saved.includes(app.id)} onSave={onSave} />
+      {onCompare ? <div className="app-row-actions">
+        <CompareButton app={app} selected={compare.includes(app.id)} onCompare={onCompare} />
+        <SaveButton app={app} saved={saved.includes(app.id)} onSave={onSave} />
+      </div> : <SaveButton app={app} saved={saved.includes(app.id)} onSave={onSave} />}
     </div>
   );
 }

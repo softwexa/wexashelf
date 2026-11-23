@@ -34,7 +34,7 @@ const templateNames = {
   porcelain: "Porcelain", ember: "Ember", fieldnotes: "Fieldnotes", signal: "Signal", lilac: "Lilac Studio",
   tide: "Tide", copper: "Copper Desk", prism: "Prism", index: "Index", velvet: "Velvet",
 };
-const screenshotTemplates = new Set(["porcelain", "ember", "fieldnotes", "signal", "lilac", "tide", "copper", "prism", "index", "velvet"]);
+const screenshotTemplates = new Set(Object.keys(templateNames));
 const conceptHeadlines: Record<string, string> = {
   porcelain: "Good apps. Clear choices.", ember: "Find your next everyday essential.",
   fieldnotes: "A little less searching. A lot more doing.", signal: "Less noise. Better apps.",
@@ -68,10 +68,11 @@ function PresetPreview({ preset, enabledPlugins }: { preset: ThemeManifest; enab
   // This receives only registered built-ins. Imported IDs never become asset URLs.
   const hasScreenshot = screenshotTemplates.has(getThemeTemplate(preset));
   const url = appIconUrl(`/themes/${preset.id}/screen.jpg`);
+  const previewUrl = appIconUrl(`/themes/${preset.id}/preview.jpg`);
   if (!hasScreenshot || failed) return <ThemeMiniature theme={preset} enabledPlugins={enabledPlugins} decorative />;
   return <figure className={gallery.screenshot}>
     <a href={url} target="_blank" rel="noreferrer" aria-label={t("Open {name} screenshot", { name: preset.name })}>
-      <img src={url} width={1440} height={1800} loading="lazy" decoding="async" alt={t("{name} homepage screenshot", { name: preset.name })} onError={() => setFailed(true)} />
+      <img src={previewUrl} width={1440} height={1000} loading="lazy" decoding="async" alt={t("{name} homepage screenshot", { name: preset.name })} onError={() => setFailed(true)} />
     </a>
     <figcaption>{t("Preset screenshot")} <span>{t("Open full image")}</span></figcaption>
   </figure>;

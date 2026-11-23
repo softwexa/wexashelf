@@ -38,7 +38,7 @@ export const BUILTIN_THEMES: ThemeManifest[] = [
     description:
       "Adaçayı yüzeylerde, yapılacak işten uygulamaya uzanan düzenli akış.",
     template: "workflow",
-    layout: "sidebar",
+    layout: "topbar",
     density: "comfortable",
     tokens: {
       background: "#eef2e9",
