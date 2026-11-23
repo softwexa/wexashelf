@@ -26,6 +26,12 @@ Navigation consumes the existing role-filtered list. It does not grant permissio
 
 Existing save, revision and publication behavior is unchanged. Leaving an unsaved record asks for confirmation; canceling preserves the record, scroll position and current menu context. Moving between content records and AI studio keeps the unsaved record mounted for the existing AI-to-draft workflow. Busy operations prevent section changes. Refresh updates the catalog workspace without replacing the unsaved record form; site access and logout retain their discard confirmations.
 
+## Choosing catalog records
+
+Record editors use a shared modal picker to select multiple related apps for an article and one app per list entry. In article content, choosing an app inserts an `[app id="…"]` reference at the end of the selected section. AI Studio uses the picker for its single target record and, for app-source tasks, an ordered set of up to four source apps. The picker supports typed search and available filters, loads additional server results as needed, and accepts keyboard selection with the arrow and Enter keys. Multi-selection can be reordered. **Apply** transfers the draft selection to the form; **Cancel** discards picker changes.
+
+In **Themes and modules**, the package picker searches bundled and installed packages and filters by API, installation state, available app references and block type. API 2 packages can be copied into a separate editable draft with its own package ID and metadata. Its app picker searches apps published in the selected preview language. Choosing app IDs creates references for that package copy; it does not publish, edit or duplicate catalog records. The customized manifest must be previewed by the server, reviewed with its checksum, then installed disabled. Enabling remains a separate review-bound action.
+
 ## Extending the interface
 
 - `src/components/admin/AdminWorkspace.tsx` owns role filtering, state, loading, save guards and section rendering.
