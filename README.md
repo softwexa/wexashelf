@@ -8,9 +8,11 @@ Readers install apps through their official store pages. The catalog can also in
 
 ## Preview
 
-[![Kobalt Atlas homepage with app search, category shortcuts and an editorial pick](public/themes/kobalt-atlas/preview.jpg)](public/themes/kobalt-atlas/screen.jpg)
+[![Kobalt Atlas homepage with app search, category shortcuts and an editorial pick](docs/screenshots/kobalt-atlas/cover.jpg)](docs/screenshots/kobalt-atlas/home.jpg)
 
-**Kobalt Atlas** with the bundled sample catalog. Select the image for the full homepage.
+**Kobalt Atlas** running the bundled sample catalog. Open the image for the full homepage. The gallery shows the current development build.
+
+[Filtered catalog](docs/screenshots/journeys/filtered.jpg) · [App details](docs/screenshots/journeys/detail.jpg) · [Comparison](docs/screenshots/journeys/compare.jpg) · [Collection](docs/screenshots/journeys/collection.jpg)
 
 ## What it includes
 
@@ -52,36 +54,36 @@ Select a theme to open its full homepage. All sixteen use the same sample catalo
 
 <table>
 <tr>
-<td><a href="public/themes/kobalt-atlas/screen.jpg"><img src="public/themes/kobalt-atlas/preview.jpg" alt="Kobalt Atlas theme preview" width="420"></a><br><strong>Kobalt Atlas</strong><br>Blue, search-led atlas with category and editorial panels.</td>
-<td><a href="public/themes/canli-katalog/screen.jpg"><img src="public/themes/canli-katalog/preview.jpg" alt="Canlı Katalog theme preview" width="420"></a><br><strong>Canlı Katalog</strong><br>Warm catalog layout with a featured selection and app cards.</td>
+<td><a href="docs/screenshots/kobalt-atlas/home.jpg"><img src="docs/screenshots/kobalt-atlas/preview.jpg" alt="Kobalt Atlas theme preview" width="420"></a><br><strong>Kobalt Atlas</strong><br>Blue, search-led atlas with category and editorial panels.<br><a href="docs/screenshots/kobalt-atlas/mobile.jpg">Mobile preview</a></td>
+<td><a href="docs/screenshots/canli-katalog/home.jpg"><img src="docs/screenshots/canli-katalog/preview.jpg" alt="Canlı Katalog theme preview" width="420"></a><br><strong>Canlı Katalog</strong><br>Warm catalog layout with a featured selection and app cards.<br><a href="docs/screenshots/canli-katalog/mobile.jpg">Mobile preview</a></td>
 </tr>
 <tr>
-<td><a href="public/themes/gece-rotalari/screen.jpg"><img src="public/themes/gece-rotalari/preview.jpg" alt="Gece Rotaları theme preview" width="420"></a><br><strong>Gece Rotaları</strong><br>Dark route-style layout with a focused comparison hero.</td>
-<td><a href="public/themes/is-akisi-haritasi/screen.jpg"><img src="public/themes/is-akisi-haritasi/preview.jpg" alt="İş Akışı Haritası theme preview" width="420"></a><br><strong>İş Akışı Haritası</strong><br>Top-nav workflow layout organized around practical steps.</td>
+<td><a href="docs/screenshots/gece-rotalari/home.jpg"><img src="docs/screenshots/gece-rotalari/preview.jpg" alt="Gece Rotaları theme preview" width="420"></a><br><strong>Gece Rotaları</strong><br>Dark route-style layout with a focused comparison hero.<br><a href="docs/screenshots/gece-rotalari/mobile.jpg">Mobile preview</a></td>
+<td><a href="docs/screenshots/is-akisi-haritasi/home.jpg"><img src="docs/screenshots/is-akisi-haritasi/preview.jpg" alt="İş Akışı Haritası theme preview" width="420"></a><br><strong>İş Akışı Haritası</strong><br>Top-nav workflow layout organized around practical steps.<br><a href="docs/screenshots/is-akisi-haritasi/mobile.jpg">Mobile preview</a></td>
 </tr>
 <tr>
-<td><a href="public/themes/velvet/screen.jpg"><img src="public/themes/velvet/preview.jpg" alt="Velvet theme preview" width="420"></a><br><strong>Velvet</strong><br>Dark cherry palette with expressive serif editorial headings.</td>
-<td><a href="public/themes/copper-desk/screen.jpg"><img src="public/themes/copper-desk/preview.jpg" alt="Copper Desk theme preview" width="420"></a><br><strong>Copper Desk</strong><br>Warm comparison-led opening with an editorial desk feel.</td>
+<td><a href="docs/screenshots/velvet/home.jpg"><img src="docs/screenshots/velvet/preview.jpg" alt="Velvet theme preview" width="420"></a><br><strong>Velvet</strong><br>Dark cherry palette with expressive serif editorial headings.<br><a href="docs/screenshots/velvet/mobile.jpg">Mobile preview</a></td>
+<td><a href="docs/screenshots/copper-desk/home.jpg"><img src="docs/screenshots/copper-desk/preview.jpg" alt="Copper Desk theme preview" width="420"></a><br><strong>Copper Desk</strong><br>Warm comparison-led opening with an editorial desk feel.<br><a href="docs/screenshots/copper-desk/mobile.jpg">Mobile preview</a></td>
 </tr>
 <tr>
-<td><a href="public/themes/porcelain/screen.jpg"><img src="public/themes/porcelain/preview.jpg" alt="Porcelain theme preview" width="420"></a><br><strong>Porcelain</strong><br>Centered search and teal comparison feature.</td>
-<td><a href="public/themes/tide/screen.jpg"><img src="public/themes/tide/preview.jpg" alt="Tide theme preview" width="420"></a><br><strong>Tide</strong><br>Coastal blue layout with platform-based app shelves.</td>
+<td><a href="docs/screenshots/porcelain/home.jpg"><img src="docs/screenshots/porcelain/preview.jpg" alt="Porcelain theme preview" width="420"></a><br><strong>Porcelain</strong><br>Centered search and teal comparison feature.<br><a href="docs/screenshots/porcelain/mobile.jpg">Mobile preview</a></td>
+<td><a href="docs/screenshots/tide/home.jpg"><img src="docs/screenshots/tide/preview.jpg" alt="Tide theme preview" width="420"></a><br><strong>Tide</strong><br>Coastal blue layout with platform-based app shelves.<br><a href="docs/screenshots/tide/mobile.jpg">Mobile preview</a></td>
 </tr>
 <tr>
-<td><a href="public/themes/index/screen.jpg"><img src="public/themes/index/preview.jpg" alt="Index theme preview" width="420"></a><br><strong>Index</strong><br>Compact browsing with application rows and contextual reading.</td>
-<td><a href="public/themes/prism/screen.jpg"><img src="public/themes/prism/preview.jpg" alt="Prism theme preview" width="420"></a><br><strong>Prism</strong><br>Coral and blue palette with varied editorial card sizes.</td>
+<td><a href="docs/screenshots/index/home.jpg"><img src="docs/screenshots/index/preview.jpg" alt="Index theme preview" width="420"></a><br><strong>Index</strong><br>Compact browsing with application rows and contextual reading.<br><a href="docs/screenshots/index/mobile.jpg">Mobile preview</a></td>
+<td><a href="docs/screenshots/prism/home.jpg"><img src="docs/screenshots/prism/preview.jpg" alt="Prism theme preview" width="420"></a><br><strong>Prism</strong><br>Coral and blue palette with varied editorial card sizes.<br><a href="docs/screenshots/prism/mobile.jpg">Mobile preview</a></td>
 </tr>
 <tr>
-<td><a href="public/themes/ember/screen.jpg"><img src="public/themes/ember/preview.jpg" alt="Ember theme preview" width="420"></a><br><strong>Ember</strong><br>Charcoal and orange with strong editorial contrast.</td>
-<td><a href="public/themes/signal/screen.jpg"><img src="public/themes/signal/preview.jpg" alt="Signal theme preview" width="420"></a><br><strong>Signal</strong><br>High contrast, lime accents and a geometric shortlist.</td>
+<td><a href="docs/screenshots/ember/home.jpg"><img src="docs/screenshots/ember/preview.jpg" alt="Ember theme preview" width="420"></a><br><strong>Ember</strong><br>Charcoal and orange with strong editorial contrast.<br><a href="docs/screenshots/ember/mobile.jpg">Mobile preview</a></td>
+<td><a href="docs/screenshots/signal/home.jpg"><img src="docs/screenshots/signal/preview.jpg" alt="Signal theme preview" width="420"></a><br><strong>Signal</strong><br>High contrast, lime accents and a geometric shortlist.<br><a href="docs/screenshots/signal/mobile.jpg">Mobile preview</a></td>
 </tr>
 <tr>
-<td><a href="public/themes/lilac-studio/screen.jpg"><img src="public/themes/lilac-studio/preview.jpg" alt="Lilac Studio theme preview" width="420"></a><br><strong>Lilac Studio</strong><br>Soft violet discovery gallery with an editorial rail.</td>
-<td><a href="public/themes/fieldnotes/screen.jpg"><img src="public/themes/fieldnotes/preview.jpg" alt="Fieldnotes theme preview" width="420"></a><br><strong>Fieldnotes</strong><br>Warm paper tones, serif headings and an editorial index.</td>
+<td><a href="docs/screenshots/lilac-studio/home.jpg"><img src="docs/screenshots/lilac-studio/preview.jpg" alt="Lilac Studio theme preview" width="420"></a><br><strong>Lilac Studio</strong><br>Soft violet discovery gallery with an editorial rail.<br><a href="docs/screenshots/lilac-studio/mobile.jpg">Mobile preview</a></td>
+<td><a href="docs/screenshots/fieldnotes/home.jpg"><img src="docs/screenshots/fieldnotes/preview.jpg" alt="Fieldnotes theme preview" width="420"></a><br><strong>Fieldnotes</strong><br>Warm paper tones, serif headings and an editorial index.<br><a href="docs/screenshots/fieldnotes/mobile.jpg">Mobile preview</a></td>
 </tr>
 <tr>
-<td><a href="public/themes/editorial-desk/screen.jpg"><img src="public/themes/editorial-desk/preview.jpg" alt="Editorial Desk theme preview" width="420"></a><br><strong>Editorial Desk</strong><br>Magazine-style layout for guides, comparisons and reading lists.</td>
-<td><a href="public/themes/compact-directory/screen.jpg"><img src="public/themes/compact-directory/preview.jpg" alt="Compact Directory theme preview" width="420"></a><br><strong>Compact Directory</strong><br>Dense directory view for quick scanning and filtering.</td>
+<td><a href="docs/screenshots/editorial-desk/home.jpg"><img src="docs/screenshots/editorial-desk/preview.jpg" alt="Editorial Desk theme preview" width="420"></a><br><strong>Editorial Desk</strong><br>Magazine-style layout for guides, comparisons and reading lists.<br><a href="docs/screenshots/editorial-desk/mobile.jpg">Mobile preview</a></td>
+<td><a href="docs/screenshots/compact-directory/home.jpg"><img src="docs/screenshots/compact-directory/preview.jpg" alt="Compact Directory theme preview" width="420"></a><br><strong>Compact Directory</strong><br>Dense directory view for quick scanning and filtering.<br><a href="docs/screenshots/compact-directory/mobile.jpg">Mobile preview</a></td>
 </tr>
 </table>
 
